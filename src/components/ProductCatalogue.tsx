@@ -3,12 +3,19 @@
 import { useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Filter, Heart, Share2, Eye, ShoppingCart } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import products from '@/data/products.json';
 import categories from '@/data/categories.json';
+import { useCart } from '@/context/CartContext';
+import ProductModal from '@/components/ProductModal';
 
 const ProductCatalogue = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+  const { addToCart } = useCart();
 
   const toggleFavorite = useCallback((productId: string) => {
     setFavorites((prev) => {
@@ -20,6 +27,33 @@ const ProductCatalogue = () => {
       }
       return newFavorites;
     });
+  }, []);
+
+  const handleQuickView = useCallback((product: any) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  }, []);
+
+  const handleAddToCart = useCallback((product: any) => {
+    addToCart(product);
+  }, [addToCart]);
+
+  const handleRequestQuote = useCallback((product: any) => {
+    router.push('/contact');
+  }, [router]);
+
+  const handleShare = useCallback((product: any) => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: product.shortDescription,
+        url: window.location.href,
+      });
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
   }, []);
 
   const filteredProducts = useMemo(() => {
@@ -116,6 +150,7 @@ const ProductCatalogue = () => {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={() => handleShare(product)}
                     style={{ padding: '8px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', cursor: 'pointer', color: '#4B5563' }}
                   >
                     <Share2 size={18} />
@@ -124,6 +159,7 @@ const ProductCatalogue = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => handleQuickView(product)}
                   style={{ position: 'absolute', bottom: '12px', left: '12px', backgroundColor: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', padding: '6px 12px', borderRadius: '9999px', fontSize: '14px', fontWeight: 500, color: '#2448D8', display: 'flex', alignItems: 'center', gap: '4px', border: 'none', cursor: 'pointer' }}
                 >
                   <Eye size={14} />
@@ -150,20 +186,32 @@ const ProductCatalogue = () => {
                 </div>
 
                 {/* Actions */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    style={{ flex: 1, backgroundColor: '#2448D8', color: 'white', padding: '10px', borderRadius: '9999px', fontWeight: 500, fontSize: '14px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', transition: 'background-color 0.2s' }}
+                    onClick={() => handleAddToCart(product)}
+                    style={{ flex: 1, minWidth: '120px', backgroundColor: '#2448D8', color: 'white', padding: '10px', borderRadius: '9999px', fontWeight: 500, fontSize: '14px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', transition: 'background-color 0.2s' }}
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
                   >
                     <ShoppingCart size={16} />
+                    <span>Add to Cart</span>
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleRequestQuote(product)}
+                    style={{ flex: 1, minWidth: '120px', backgroundColor: '#10B981', color: 'white', padding: '10px', borderRadius: '9999px', fontWeight: 500, fontSize: '14px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', transition: 'background-color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10B981'}
+                  >
                     <span>Request Quote</span>
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => handleQuickView(product)}
                     style={{ padding: '10px 16px', border: '2px solid #2448D8', color: '#2448D8', borderRadius: '9999px', fontWeight: 500, fontSize: '14px', cursor: 'pointer', backgroundColor: 'transparent', transition: 'all 0.2s' }}
                     onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#2448D8'; e.currentTarget.style.color = 'white'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#2448D8'; }}
@@ -189,6 +237,16 @@ const ProductCatalogue = () => {
           </motion.div>
         )}
       </div>
+
+      {/* Product Modal */}
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddToCart={handleAddToCart}
+        onToggleFavorite={toggleFavorite}
+        isFavorite={selectedProduct ? favorites.has(selectedProduct.id) : false}
+      />
     </section>
   );
 };
