@@ -52,13 +52,15 @@ const ProductModal = ({
               left: '50%',
               transform: 'translate(-50%, -50%)',
               backgroundColor: 'white',
-              borderRadius: '20px',
+              borderRadius: '16px',
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
               zIndex: 101,
-              maxWidth: '900px',
-              width: '90%',
-              maxHeight: '90vh',
-              overflowY: 'auto',
+              maxWidth: '700px',
+              width: '95%',
+              maxHeight: '85vh',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
             {/* Close Button */}
@@ -86,19 +88,21 @@ const ProductModal = ({
               <X size={20} />
             </button>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0', overflowY: 'auto', maxHeight: '85vh' }}>
               {/* Product Image */}
               <div
                 style={{
                   position: 'relative',
-                  height: '300px',
+                  height: '200px',
+                  minHeight: '200px',
                   background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  borderTopLeftRadius: '20px',
-                  borderTopRightRadius: '20px',
+                  borderTopLeftRadius: '16px',
+                  borderTopRightRadius: '16px',
                   overflow: 'hidden',
+                  flexShrink: 0,
                 }}
               >
                 {product.image ? (
@@ -109,16 +113,16 @@ const ProductModal = ({
                       width: '100%',
                       height: '100%',
                       objectFit: 'contain',
-                      padding: '32px',
+                      padding: '24px',
                     }}
                   />
                 ) : (
-                  <div style={{ fontSize: '80px' }}>📺</div>
+                  <div style={{ fontSize: '60px' }}>📺</div>
                 )}
               </div>
 
               {/* Product Details */}
-              <div style={{ padding: '32px' }}>
+              <div style={{ padding: '24px', overflowY: 'auto' }}>
                 {/* Category */}
                 <div
                   style={{
@@ -136,10 +140,11 @@ const ProductModal = ({
                 {/* Name */}
                 <h2
                   style={{
-                    fontSize: '28px',
+                    fontSize: 'clamp(20px, 4vw, 24px)',
                     fontWeight: 700,
                     color: '#10172B',
-                    marginBottom: '16px',
+                    marginBottom: '12px',
+                    lineHeight: '1.3',
                   }}
                 >
                   {product.name}
@@ -148,10 +153,10 @@ const ProductModal = ({
                 {/* Short Description */}
                 <p
                   style={{
-                    fontSize: '16px',
+                    fontSize: '14px',
                     color: '#4B5563',
-                    marginBottom: '24px',
-                    lineHeight: '1.6',
+                    marginBottom: '16px',
+                    lineHeight: '1.5',
                   }}
                 >
                   {product.shortDescription}
@@ -161,26 +166,26 @@ const ProductModal = ({
                 <div
                   style={{
                     backgroundColor: '#F9FAFB',
-                    padding: '20px',
+                    padding: '16px',
                     borderRadius: '12px',
-                    marginBottom: '24px',
+                    marginBottom: '16px',
                   }}
                 >
                   <h3
                     style={{
-                      fontSize: '18px',
+                      fontSize: '16px',
                       fontWeight: 600,
                       color: '#10172B',
-                      marginBottom: '12px',
+                      marginBottom: '8px',
                     }}
                   >
                     Product Description
                   </h3>
                   <p
                     style={{
-                      fontSize: '15px',
+                      fontSize: '14px',
                       color: '#4B5563',
-                      lineHeight: '1.7',
+                      lineHeight: '1.6',
                     }}
                   >
                     {product.description}
@@ -188,13 +193,13 @@ const ProductModal = ({
                 </div>
 
                 {/* Features */}
-                <div style={{ marginBottom: '24px' }}>
+                <div style={{ marginBottom: '16px' }}>
                   <h3
                     style={{
-                      fontSize: '18px',
+                      fontSize: '16px',
                       fontWeight: 600,
                       color: '#10172B',
-                      marginBottom: '12px',
+                      marginBottom: '8px',
                     }}
                   >
                     Key Features
@@ -225,13 +230,13 @@ const ProductModal = ({
                 </div>
 
                 {/* Applications */}
-                <div style={{ marginBottom: '32px' }}>
+                <div style={{ marginBottom: '24px' }}>
                   <h3
                     style={{
-                      fontSize: '18px',
+                      fontSize: '16px',
                       fontWeight: 600,
                       color: '#10172B',
-                      marginBottom: '12px',
+                      marginBottom: '8px',
                     }}
                   >
                     Ideal For
@@ -277,13 +282,13 @@ const ProductModal = ({
                     onClick={() => onAddToCart(product)}
                     style={{
                       flex: 1,
-                      minWidth: '200px',
+                      minWidth: '140px',
                       backgroundColor: '#2448D8',
                       color: 'white',
-                      padding: '14px 24px',
+                      padding: '12px 20px',
                       borderRadius: '9999px',
                       fontWeight: 600,
-                      fontSize: '16px',
+                      fontSize: '14px',
                       border: 'none',
                       cursor: 'pointer',
                       display: 'flex',
@@ -308,12 +313,12 @@ const ProductModal = ({
                     whileTap={{ scale: 0.98 }}
                     onClick={() => onToggleFavorite(product.id)}
                     style={{
-                      padding: '14px 24px',
+                      padding: '12px 20px',
                       border: '2px solid #2448D8',
                       color: isFavorite ? '#EF4444' : '#2448D8',
                       borderRadius: '9999px',
                       fontWeight: 600,
-                      fontSize: '16px',
+                      fontSize: '14px',
                       cursor: 'pointer',
                       backgroundColor: 'transparent',
                       transition: 'all 0.2s',
