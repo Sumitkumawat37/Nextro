@@ -93,9 +93,17 @@ const ProductCatalogue = () => {
             >
               {/* Product Image */}
               <div style={{ position: 'relative', height: '192px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div style={{ fontSize: '48px' }}>📺</div>
-                </div>
+                {product.image ? (
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '16px' }}
+                  />
+                ) : (
+                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ fontSize: '48px' }}>📺</div>
+                  </div>
+                )}
                 <div style={{ position: 'absolute', top: '12px', right: '12px', display: 'flex', gap: '8px' }}>
                   <motion.button
                     whileHover={{ scale: 1.1 }}
