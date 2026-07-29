@@ -3,306 +3,282 @@
     {
       "id": "interactive-flat-panel",
       "name": "Interactive Flat Panel",
-      "category": "Interactive Flat Panel",
+      "category": "Interactive Display",
       "shortDescription": "Zero Bonding Technology with Ultra HD 4K display for modern classrooms",
-      "description": "Interactive Flat Panel featuring Zero Bonding Technology, Low Parallax Writing, Wider Viewing Angle, Eye Protection, Dual Pen Support, Ultra HD 4K, and AI Panel capabilities.",
-      "features": [
-        "Zero Bonding Technology",
-        "Low Parallax Writing",
-        "Wider Viewing Angle",
-        "Eye Protection",
-        "Dual Pen Support",
-        "Ultra HD 4K",
-        "AI Panel"
-      ],
-      "sizes": ["55", "65", "75", "86"],
+      "description": "Interactive Flat Panel featuring Zero Bonding Technology, Low Parallax Writing, Wider Viewing Angle, Eye Protection, Dual Pen Support, Ultra HD 4K, and AI Panel capabilities for enhanced collaborative learning.",
+      "image": "/products/interactive-flat-panel.png",
+      "features": ["Zero Bonding Technology", "Low Parallax Writing", "Wider Viewing Angle", "Eye Protection", "Dual Pen Support", "Ultra HD 4K", "AI Panel"],
       "applications": ["Classrooms", "Conference Rooms", "Training Centers"]
     },
     {
-      "id": "ops",
-      "name": "OPS (Open Pluggable Specification)",
-      "category": "OPS",
-      "shortDescription": "Open Pluggable Specification module for enhanced computing",
-      "description": "OPS module for seamless integration with interactive displays, providing enhanced computing capabilities.",
-      "features": [
-        "Plug & Play",
-        "Easy Integration",
-        "Compact Design"
-      ],
-      "applications": ["Interactive Displays", "Digital Signage"]
+      "id": "interactive-flat-panel-2",
+      "name": "Interactive Flat Panel (65 inch)",
+      "category": "Interactive Display",
+      "shortDescription": "65-inch Interactive Flat Panel with advanced touch technology",
+      "description": "65-inch Interactive Flat Panel with advanced touch technology, perfect for medium-sized classrooms and meeting rooms with crystal clear display and responsive touch interface.",
+      "image": "/products/interactive-flat-panel-2.png",
+      "features": ["65-inch Display", "Advanced Touch", "4K Resolution", "Multi-touch Support", "Anti-glare Screen"],
+      "applications": ["Classrooms", "Meeting Rooms", "Training Centers"]
     },
     {
-      "id": "professional-usb-webcam",
-      "name": "Professional USB Webcam",
-      "category": "Webcam",
-      "shortDescription": "Professional USB webcam for video conferencing",
-      "description": "High-quality USB webcam designed for professional video conferencing and online meetings.",
-      "features": [
-        "USB Connectivity",
-        "HD Resolution",
-        "Plug & Play"
-      ],
-      "applications": ["Video Conferencing", "Online Classes"]
+      "id": "interactive-flat-panel-3",
+      "name": "Interactive Flat Panel (75 inch)",
+      "category": "Interactive Display",
+      "shortDescription": "75-inch Interactive Flat Panel for large venues and auditoriums",
+      "description": "75-inch Interactive Flat Panel designed for large venues and auditoriums, providing exceptional visibility and interactive capabilities for presentations and collaborative sessions.",
+      "image": "/products/interactive-flat-panel-3.png",
+      "features": ["75-inch Display", "Large Venue Optimized", "4K Resolution", "Wide Viewing Angle", "High Brightness"],
+      "applications": ["Auditoriums", "Large Classrooms", "Conference Halls"]
     },
     {
       "id": "4k-bar-camera",
       "name": "4K Bar Camera",
       "category": "Camera",
-      "shortDescription": "4K Bar Camera for professional video capture",
-      "description": "Professional 4K bar camera for high-quality video capture in conference rooms and classrooms.",
-      "features": [
-        "4K Resolution",
-        "Wide Angle",
-        "Professional Quality"
-      ],
-      "applications": ["Conference Rooms", "Classrooms"]
+      "shortDescription": "Professional 4K bar camera for high-quality video capture",
+      "description": "Professional 4K bar camera designed for conference rooms and classrooms, delivering ultra-high definition video quality with wide angle lens for comprehensive room coverage.",
+      "image": "/products/4k-bar-camera.png",
+      "features": ["4K Ultra HD Resolution", "Wide Angle Lens", "Auto Focus", "Low Light Performance", "USB Connectivity"],
+      "applications": ["Conference Rooms", "Classrooms", "Broadcast Studios"]
     },
     {
-      "id": "all-in-one-video-bar",
-      "name": "All-in-One Video Bar",
-      "category": "Video Bar",
-      "shortDescription": "Complete video conferencing solution in one device",
-      "description": "All-in-one video bar combining camera, speaker, and microphone for complete video conferencing solutions.",
-      "features": [
-        "Integrated Camera",
-        "Built-in Speaker",
-        "Microphone Array"
-      ],
-      "applications": ["Huddle Rooms", "Conference Rooms"]
-    },
-    {
-      "id": "full-hd-ptz-camera",
-      "name": "Full HD PTZ Camera",
-      "category": "PTZ Camera",
-      "shortDescription": "Full HD PTZ camera with pan-tilt-zoom functionality",
-      "description": "Professional Full HD PTZ camera with smooth pan-tilt-zoom movements for conference rooms and lecture halls.",
-      "features": [
-        "Full HD 1080p",
-        "PTZ Functionality",
-        "Smooth Movement"
-      ],
-      "applications": ["Conference Rooms", "Lecture Halls"]
+      "id": "4k-bar-camera-2",
+      "name": "4K Bar Camera Pro",
+      "category": "Camera",
+      "shortDescription": "Advanced 4K bar camera with enhanced features",
+      "description": "Advanced 4K bar camera with enhanced features including superior zoom capabilities, AI-powered framing, and exceptional audio integration for professional video conferencing setups.",
+      "image": "/products/4k-bar-camera-2.png",
+      "features": ["4K Ultra HD", "AI Framing", "Enhanced Zoom", "Superior Audio", "Multiple Connectivity"],
+      "applications": ["Professional Studios", "Large Conference Rooms", "Broadcast"]
     },
     {
       "id": "4k-ptz-camera",
       "name": "4K PTZ Camera",
       "category": "PTZ Camera",
-      "shortDescription": "Ultra HD 4K PTZ camera for professional productions",
-      "description": "Professional 4K PTZ camera with advanced features for broadcast-quality video production.",
-      "features": [
-        "4K Ultra HD",
-        "PTZ Control",
-        "Professional Grade"
-      ],
-      "applications": ["Broadcast Studios", "Large Venues"]
+      "shortDescription": "Ultra HD 4K PTZ camera with pan-tilt-zoom functionality",
+      "description": "Professional 4K PTZ camera with advanced pan-tilt-zoom capabilities, perfect for lecture halls, conference rooms, and broadcast applications requiring precise camera control.",
+      "image": "/products/4k-ptz-camera.png",
+      "features": ["4K Ultra HD", "PTZ Control", "Smooth Movement", "Silent Operation", "Remote Control"],
+      "applications": ["Lecture Halls", "Conference Rooms", "Broadcast Studios"]
     },
     {
-      "id": "audio-podium",
-      "name": "Audio Podium",
-      "category": "Podium",
-      "shortDescription": "Audio podium with built-in sound system",
-      "description": "Modern audio podium featuring built-in speakers and microphone for presentations.",
-      "features": [
-        "Built-in Audio",
-        "Microphone Included",
-        "Modern Design"
-      ],
-      "applications": ["Lecture Halls", "Conference Rooms"]
+      "id": "full-ptz-camera",
+      "name": "Full HD PTZ Camera",
+      "category": "PTZ Camera",
+      "shortDescription": "Full HD PTZ camera for professional video production",
+      "description": "Full HD PTZ camera with reliable pan-tilt-zoom functionality, ideal for educational institutions and businesses requiring professional video capture and streaming.",
+      "image": "/products/full-ptz-camera.png",
+      "features": ["Full HD 1080p", "PTZ Functionality", "Smooth Movement", "Easy Setup", "Multiple Presets"],
+      "applications": ["Classrooms", "Conference Rooms", "Live Streaming"]
     },
     {
-      "id": "smart-digital-podium",
-      "name": "Smart Digital Podium",
-      "category": "Podium",
-      "shortDescription": "Interactive digital podium with smart features",
-      "description": "Smart digital podium with interactive display and advanced features for modern presentations.",
-      "features": [
-        "Interactive Display",
-        "Smart Features",
-        "Touch Control"
-      ],
-      "applications": ["Smart Classrooms", "Conference Centers"]
+      "id": "full-ptz-camera-2",
+      "name": "Full HD PTZ Camera Plus",
+      "category": "PTZ Camera",
+      "shortDescription": "Enhanced Full HD PTZ camera with advanced features",
+      "description": "Enhanced Full HD PTZ camera with advanced features including improved low-light performance, faster response times, and expanded preset storage for versatile applications.",
+      "image": "/products/full-ptz-camera-2.png",
+      "features": ["Full HD 1080p", "Enhanced Low Light", "Fast Response", "Extended Presets", "Silent Operation"],
+      "applications": ["Professional Studios", "Large Venues", "Event Recording"]
+    },
+    {
+      "id": "webcam",
+      "name": "Professional USB Webcam",
+      "category": "Webcam",
+      "shortDescription": "High-quality USB webcam for video conferencing",
+      "description": "Professional USB webcam designed for video conferencing and online meetings, offering HD resolution with plug-and-play simplicity for seamless integration.",
+      "image": "/products/webcam.png",
+      "features": ["HD Resolution", "USB Plug & Play", "Auto Focus", "Built-in Microphone", "Wide Angle"],
+      "applications": ["Video Conferencing", "Online Classes", "Remote Work"]
+    },
+    {
+      "id": "active-speaker-with-microphone",
+      "name": "Active Speaker with Microphone",
+      "category": "Audio",
+      "shortDescription": "Active speaker system with integrated microphone",
+      "description": "Active speaker system with integrated microphone, designed for conference rooms and classrooms requiring clear audio reproduction and pickup for interactive sessions.",
+      "image": "/products/active-speaker-with-microphone.png",
+      "features": ["Integrated Microphone", "Clear Audio", "360° Pickup", "Easy Setup", "Compact Design"],
+      "applications": ["Conference Rooms", "Classrooms", "Huddle Rooms"]
+    },
+    {
+      "id": "speakerphone",
+      "name": "Speakerphone",
+      "category": "Audio",
+      "shortDescription": "Professional speakerphone for conference calls",
+      "description": "Professional speakerphone with noise cancellation technology, providing crystal clear audio for conference calls and collaborative sessions in various environments.",
+      "image": "/products/speakerphone.png",
+      "features": ["Noise Cancellation", "360° Audio", "Full Duplex", "USB Connectivity", "Compact Design"],
+      "applications": ["Conference Rooms", "Huddle Rooms", "Home Office"]
+    },
+    {
+      "id": "usb-wireless-video-conference-speakerphone",
+      "name": "USB Wireless Video Conference Speakerphone",
+      "category": "Audio",
+      "shortDescription": "Wireless speakerphone for video conferencing",
+      "description": "Wireless speakerphone designed for video conferencing, offering flexibility in room setup with superior audio quality and seamless connectivity to various devices.",
+      "image": "/products/usb-wireless-video-conference-speakerphone.png",
+      "features": ["Wireless Connectivity", "HD Audio", "Noise Reduction", "Long Battery Life", "Multi-device Pairing"],
+      "applications": ["Conference Rooms", "Mobile Meetings", "Remote Work"]
     },
     {
       "id": "speaker",
-      "name": "Speaker",
+      "name": "Professional Speaker",
       "category": "Audio",
-      "shortDescription": "Professional speaker for clear audio output",
-      "description": "High-quality speaker for clear audio distribution in classrooms and conference rooms.",
-      "features": [
-        "Clear Audio",
-        "Professional Quality",
-        "Wide Coverage"
-      ],
-      "applications": ["Classrooms", "Conference Rooms"]
-    },
-    {
-      "id": "wireless-speakerphone",
-      "name": "Wireless Speakerphone",
-      "category": "Audio",
-      "shortDescription": "Wireless speakerphone for conference calls",
-      "description": "Wireless speakerphone with noise cancellation for clear conference calls.",
-      "features": [
-        "Wireless Connectivity",
-        "Noise Cancellation",
-        "360° Audio"
-      ],
-      "applications": ["Conference Rooms", "Huddle Rooms"]
-    },
-    {
-      "id": "digital-kiosk",
-      "name": "Digital Kiosk",
-      "category": "Display",
-      "shortDescription": "Interactive digital kiosk for information display",
-      "description": "Interactive digital kiosk for information display, wayfinding, and self-service applications.",
-      "features": [
-        "Touch Display",
-        "Interactive",
-        "Self-Service"
-      ],
-      "applications": ["Retail", "Wayfinding", "Information Display"]
-    },
-    {
-      "id": "a-type-standee",
-      "name": "A-Type Standee",
-      "category": "Display",
-      "shortDescription": "A-Type standee for advertising and display",
-      "description": "A-Type standee for advertising and promotional displays in high-traffic areas.",
-      "features": [
-        "Freestanding",
-        "Portable",
-        "Eye-catching"
-      ],
-      "applications": ["Retail", "Events", "Promotions"]
+      "shortDescription": "High-quality speaker for clear audio output",
+      "description": "Professional speaker system designed for clear audio distribution in classrooms, conference rooms, and public spaces requiring reliable sound reinforcement.",
+      "image": "/products/speaker.png",
+      "features": ["Clear Audio", "Wide Coverage", "High Power Output", "Multiple Inputs", "Wall Mountable"],
+      "applications": ["Classrooms", "Conference Rooms", "Public Spaces"]
     },
     {
       "id": "noise-cancellation-microphone",
       "name": "Noise Cancellation Microphone",
       "category": "Audio",
-      "shortDescription": "Professional microphone with noise cancellation",
-      "description": "High-quality microphone with advanced noise cancellation for clear audio capture.",
-      "features": [
-        "Noise Cancellation",
-        "Clear Audio",
-        "Professional Quality"
-      ],
-      "applications": ["Conference Rooms", "Recording Studios"]
+      "shortDescription": "Professional microphone with advanced noise cancellation",
+      "description": "High-quality microphone with advanced noise cancellation technology, ensuring clear audio capture in noisy environments for presentations and recordings.",
+      "image": "/products/noise-cancellation-microphone.png",
+      "features": ["Advanced Noise Cancellation", "Clear Audio Capture", "Directional Pickup", "USB Interface", "Compact Design"],
+      "applications": ["Conference Rooms", "Recording Studios", "Presentations"]
     },
     {
-      "id": "automatic-school-bell",
-      "name": "Automatic School Bell",
+      "id": "all-in-one-smart-digital-podium",
+      "name": "All-in-One Smart Digital Podium",
+      "category": "Podium",
+      "shortDescription": "Interactive digital podium with comprehensive smart features",
+      "description": "All-in-one smart digital podium featuring interactive display, integrated computer, and advanced presentation tools for modern educational and corporate environments.",
+      "image": "/products/all-in-one-smart-digital-podium.png",
+      "features": ["Interactive Display", "Integrated Computer", "Touch Control", "Document Camera", "Multiple Connectivity"],
+      "applications": ["Smart Classrooms", "Lecture Halls", "Conference Centers"]
+    },
+    {
+      "id": "smart-podium",
+      "name": "Smart Podium",
+      "category": "Podium",
+      "shortDescription": "Interactive podium with smart presentation features",
+      "description": "Smart podium with interactive display and advanced features for modern presentations, enabling seamless content sharing and interactive teaching methods.",
+      "image": "/products/smart-podium.png",
+      "features": ["Interactive Display", "Touch Control", "Modern Design", "Cable Management", "Adjustable Height"],
+      "applications": ["Classrooms", "Conference Rooms", "Training Centers"]
+    },
+    {
+      "id": "open-pluggable-specification",
+      "name": "OPS (Open Pluggable Specification)",
+      "category": "Computing",
+      "shortDescription": "Open Pluggable Specification module for enhanced computing",
+      "description": "OPS module for seamless integration with interactive displays, providing enhanced computing capabilities and transforming displays into all-in-one solutions.",
+      "image": "/products/open-pluggable-specification.png",
+      "features": ["Plug & Play", "Easy Integration", "Compact Design", "High Performance", "Multiple I/O Ports"],
+      "applications": ["Interactive Displays", "Digital Signage", "Smart Boards"]
+    },
+    {
+      "id": "biometric-time-attendance",
+      "name": "Biometric Time Attendance",
       "category": "Automation",
-      "shortDescription": "Programmable automatic bell system for schools",
-      "description": "Automatic school bell system with programmable schedules for educational institutions.",
-      "features": [
-        "Programmable Schedule",
-        "Automatic Operation",
-        "Multiple Tones"
-      ],
-      "applications": ["Schools", "Colleges", "Institutions"]
+      "shortDescription": "Biometric time attendance system for organizations",
+      "description": "Advanced biometric time attendance system using fingerprint and facial recognition technology for accurate and secure employee time tracking in organizations.",
+      "image": "/products/biometric-time-attendance.png",
+      "features": ["Fingerprint Recognition", "Facial Recognition", "Cloud Integration", "Real-time Reporting", "Multi-location Support"],
+      "applications": ["Offices", "Schools", "Factories", "Healthcare"]
+    },
+    {
+      "id": "sound-bell-pro",
+      "name": "Sound Bell Pro",
+      "category": "Automation",
+      "shortDescription": "Professional automatic bell system for institutions",
+      "description": "Professional automatic bell system with programmable schedules and multiple tone options for schools, colleges, and institutions requiring automated bell systems.",
+      "image": "/products/sound-bell-pro.png",
+      "features": ["Programmable Schedule", "Multiple Tones", "Volume Control", "Easy Programming", "Reliable Operation"],
+      "applications": ["Schools", "Colleges", "Institutions", "Factories"]
     },
     {
       "id": "wall-mount",
       "name": "Wall Mount",
-      "category": "Accessories",
-      "shortDescription": "Wall mount for displays and panels",
-      "description": "Secure wall mount for displays and interactive panels.",
-      "features": [
-        "Secure Mounting",
-        "Adjustable",
-        "Heavy Duty"
-      ],
-      "applications": ["Displays", "Interactive Panels"]
+      "category": "Mounting",
+      "shortDescription": "Secure wall mount for displays and panels",
+      "description": "Secure wall mount designed for displays and interactive panels, providing stable and adjustable mounting solution for various screen sizes and weights.",
+      "image": "/products/wall-mount.png",
+      "features": ["Secure Mounting", "Adjustable Tilt", "Heavy Duty", "Easy Installation", "Cable Management"],
+      "applications": ["Displays", "Interactive Panels", "Digital Signage"]
     },
     {
       "id": "floor-mount",
       "name": "Floor Mount",
-      "category": "Accessories",
+      "category": "Mounting",
       "shortDescription": "Floor stand mount for displays",
-      "description": "Floor stand mount for displays and interactive panels requiring freestanding installation.",
-      "features": [
-        "Freestanding",
-        "Adjustable Height",
-        "Stable Base"
-      ],
-      "applications": ["Displays", "Interactive Panels"]
-    },
-    {
-      "id": "tripod",
-      "name": "Tripod",
-      "category": "Accessories",
-      "shortDescription": "Tripod stand for cameras and equipment",
-      "description": "Adjustable tripod stand for cameras and audio equipment.",
-      "features": [
-        "Adjustable Height",
-        "Portable",
-        "Stable"
-      ],
-      "applications": ["Cameras", "Audio Equipment"]
-    },
-    {
-      "id": "boom-stand",
-      "name": "Boom Stand",
-      "category": "Accessories",
-      "shortDescription": "Boom stand for microphones",
-      "description": "Adjustable boom stand for microphones in recording and presentation setups.",
-      "features": [
-        "Adjustable Arm",
-        "Stable Base",
-        "Professional"
-      ],
-      "applications": ["Recording Studios", "Conference Rooms"]
+      "description": "Floor stand mount for displays and interactive panels requiring freestanding installation, offering adjustable height and stable base for versatile positioning.",
+      "image": "/products/floor-mount.png",
+      "features": ["Freestanding", "Adjustable Height", "Stable Base", "Mobile Option", "Cable Management"],
+      "applications": ["Displays", "Interactive Panels", "Trade Shows"]
     },
     {
       "id": "wall-stand",
       "name": "Wall Stand",
-      "category": "Accessories",
-      "shortDescription": "Wall stand for displays",
-      "description": "Wall-mounted stand for displays with adjustable positioning.",
-      "features": [
-        "Wall Mounted",
-        "Adjustable",
-        "Space Saving"
-      ],
-      "applications": ["Displays", "Interactive Panels"]
+      "category": "Mounting",
+      "shortDescription": "Wall-mounted stand for displays",
+      "description": "Wall-mounted stand for displays with adjustable positioning, providing space-saving solution with flexible viewing angles for various environments.",
+      "image": "/products/wall-stand.png",
+      "features": ["Wall Mounted", "Adjustable", "Space Saving", "Sturdy Design", "Easy Installation"],
+      "applications": ["Displays", "Interactive Panels", "Digital Signage"]
+    },
+    {
+      "id": "tripod",
+      "name": "Tripod",
+      "category": "Mounting",
+      "shortDescription": "Adjustable tripod stand for cameras and equipment",
+      "description": "Adjustable tripod stand for cameras and audio equipment, offering stability and flexibility for various recording and presentation setups.",
+      "image": "/products/tripod.png",
+      "features": ["Adjustable Height", "Portable", "Stable", "Quick Release", "Universal Mount"],
+      "applications": ["Cameras", "Audio Equipment", "Lighting"]
+    },
+    {
+      "id": "boomer-stand",
+      "name": "Boomer Stand",
+      "category": "Mounting",
+      "shortDescription": "Professional boom stand for microphones",
+      "description": "Professional boom stand for microphones in recording and presentation setups, providing adjustable arm positioning and stable base for optimal microphone placement.",
+      "image": "/products/boomer-stand.png",
+      "features": ["Adjustable Arm", "Stable Base", "Professional Grade", "Smooth Movement", "Compact Storage"],
+      "applications": ["Recording Studios", "Conference Rooms", "Podcast Studios"]
     },
     {
       "id": "led-panel-lights",
       "name": "LED Panel Lights",
       "category": "Lighting",
-      "shortDescription": "LED panel lights for illumination",
-      "description": "Energy-efficient LED panel lights for classrooms and offices.",
-      "features": [
-        "Energy Efficient",
-        "Bright",
-        "Long Lasting"
-      ],
-      "applications": ["Classrooms", "Offices"]
+      "shortDescription": "Energy-efficient LED panel lights for illumination",
+      "description": "Energy-efficient LED panel lights providing bright and uniform illumination for classrooms, offices, and commercial spaces with long-lasting performance.",
+      "image": "/products/led-panel-lights.png",
+      "features": ["Energy Efficient", "Bright Output", "Long Lasting", "Flicker Free", "Easy Installation"],
+      "applications": ["Classrooms", "Offices", "Commercial Spaces"]
     },
     {
       "id": "tube-lights",
-      "name": "Tube Lights",
+      "name": "LED Tube Lights",
       "category": "Lighting",
       "shortDescription": "LED tube lights for general lighting",
-      "description": "LED tube lights for efficient general lighting in educational and commercial spaces.",
-      "features": [
-        "Energy Efficient",
-        "Bright",
-        "Easy Installation"
-      ],
-      "applications": ["Classrooms", "Offices", "Corridors"]
+      "description": "LED tube lights for efficient general lighting in educational and commercial spaces, offering energy savings and reliable performance with easy retrofit installation.",
+      "image": "/products/tube-lights.png",
+      "features": ["Energy Efficient", "Bright", "Easy Installation", "Long Life", "Instant Start"],
+      "applications": ["Classrooms", "Offices", "Corridors", "Warehouses"]
     },
     {
       "id": "umbrella-lights",
       "name": "Umbrella Lights",
       "category": "Lighting",
-      "shortDescription": "Umbrella lights for focused illumination",
-      "description": "Umbrella lights for focused illumination in specific areas.",
-      "features": [
-        "Focused Light",
-        "Adjustable",
-        "Professional"
-      ],
-      "applications": ["Studios", "Presentation Areas"]
+      "shortDescription": "Professional umbrella lights for focused illumination",
+      "description": "Professional umbrella lights for focused illumination in studios, presentation areas, and photography setups, providing soft and directional lighting.",
+      "image": "/products/umbrella-lights.png",
+      "features": ["Focused Light", "Adjustable", "Professional Quality", "Soft Lighting", "Cool Running"],
+      "applications": ["Studios", "Presentation Areas", "Photography", "Video Production"]
+    },
+    {
+      "id": "floor-standing-display",
+      "name": "Floor Standing Display",
+      "category": "Display",
+      "shortDescription": "Freestanding digital display for various applications",
+      "description": "Floor standing digital display for advertising, information display, and wayfinding in high-traffic areas including retail stores, malls, and public spaces.",
+      "image": "/products/floor-standing-display.png",
+      "features": ["Freestanding", "High Brightness", "Touch Optional", "Easy Content Management", "Durable Design"],
+      "applications": ["Retail", "Malls", "Public Spaces", "Corporate Lobbies"]
     }
   ]
 }
