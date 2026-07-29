@@ -2,18 +2,15 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Filter, Heart, Share2, Eye, ShoppingCart } from 'lucide-react';
+import { Filter, Heart, Share2, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import products from '@/data/products.json';
 import categories from '@/data/categories.json';
 import { useCart } from '@/context/CartContext';
-import ProductModal from '@/components/ProductModal';
 
 const ProductCatalogue = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const { addToCart } = useCart();
 
@@ -27,11 +24,6 @@ const ProductCatalogue = () => {
       }
       return newFavorites;
     });
-  }, []);
-
-  const handleQuickView = useCallback((product: any) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
   }, []);
 
   const handleAddToCart = useCallback((product: any) => {
@@ -114,7 +106,7 @@ const ProductCatalogue = () => {
         </motion.div>
 
         {/* Product Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '32px' }}>
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -126,16 +118,16 @@ const ProductCatalogue = () => {
               style={{ backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', border: '1px solid #F3F4F6', transition: 'all 0.3s', overflow: 'hidden' }}
             >
               {/* Product Image */}
-              <div style={{ position: 'relative', height: '192px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: '240px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden' }}>
                 {product.image ? (
                   <img 
                     src={product.image} 
                     alt={product.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '16px' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '24px' }}
                   />
                 ) : (
                   <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ fontSize: '48px' }}>📺</div>
+                    <div style={{ fontSize: '64px' }}>📺</div>
                   </div>
                 )}
                 <div style={{ position: 'absolute', top: '12px', right: '12px', display: 'flex', gap: '8px' }}>
@@ -156,67 +148,72 @@ const ProductCatalogue = () => {
                     <Share2 size={18} />
                   </motion.button>
                 </div>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleQuickView(product)}
-                  style={{ position: 'absolute', bottom: '12px', left: '12px', backgroundColor: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', padding: '6px 12px', borderRadius: '9999px', fontSize: '14px', fontWeight: 500, color: '#2448D8', display: 'flex', alignItems: 'center', gap: '4px', border: 'none', cursor: 'pointer' }}
-                >
-                  <Eye size={14} />
-                  <span>Quick View</span>
-                </motion.button>
               </div>
 
               {/* Product Info */}
-              <div style={{ padding: '20px' }}>
-                <div style={{ fontSize: '12px', color: '#2448D8', fontWeight: 500, marginBottom: '8px' }}>{product.category}</div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#10172B', marginBottom: '8px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{product.name}</h3>
-                <p style={{ fontSize: '14px', color: '#4B5563', marginBottom: '16px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{product.shortDescription}</p>
+              <div style={{ padding: '24px' }}>
+                <div style={{ fontSize: '13px', color: '#2448D8', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{product.category}</div>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#10172B', marginBottom: '12px', lineHeight: '1.3' }}>{product.name}</h3>
+                <p style={{ fontSize: '15px', color: '#4B5563', marginBottom: '20px', lineHeight: '1.6' }}>{product.shortDescription}</p>
+
+                {/* Full Description */}
+                <div style={{ backgroundColor: '#F9FAFB', padding: '16px', borderRadius: '12px', marginBottom: '20px' }}>
+                  <h4 style={{ fontSize: '16px', fontWeight: 600, color: '#10172B', marginBottom: '8px' }}>Product Description</h4>
+                  <p style={{ fontSize: '14px', color: '#4B5563', lineHeight: '1.6' }}>{product.description}</p>
+                </div>
 
                 {/* Features */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
-                  {product.features.slice(0, 3).map((feature, i) => (
-                    <span
-                      key={i}
-                      style={{ fontSize: '12px', backgroundColor: '#F0F4FF', color: '#2448D8', padding: '4px 8px', borderRadius: '9999px' }}
-                    >
-                      {feature}
-                    </span>
-                  ))}
+                <div style={{ marginBottom: '20px' }}>
+                  <h4 style={{ fontSize: '16px', fontWeight: 600, color: '#10172B', marginBottom: '12px' }}>Key Features</h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {product.features.map((feature, i) => (
+                      <span
+                        key={i}
+                        style={{ fontSize: '13px', backgroundColor: '#F0F4FF', color: '#2448D8', padding: '6px 12px', borderRadius: '9999px', fontWeight: 500 }}
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Applications */}
+                <div style={{ marginBottom: '24px' }}>
+                  <h4 style={{ fontSize: '16px', fontWeight: 600, color: '#10172B', marginBottom: '12px' }}>Ideal For</h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {product.applications.map((application, i) => (
+                      <span
+                        key={i}
+                        style={{ fontSize: '13px', backgroundColor: '#ECFDF5', color: '#059669', padding: '6px 12px', borderRadius: '9999px', fontWeight: 500 }}
+                      >
+                        {application}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Actions */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => handleAddToCart(product)}
-                    style={{ flex: 1, minWidth: '120px', backgroundColor: '#2448D8', color: 'white', padding: '10px', borderRadius: '9999px', fontWeight: 500, fontSize: '14px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', transition: 'background-color 0.2s' }}
+                    style={{ flex: 1, minWidth: '140px', backgroundColor: '#2448D8', color: 'white', padding: '12px 20px', borderRadius: '9999px', fontWeight: 600, fontSize: '15px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', transition: 'background-color 0.2s' }}
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
                   >
-                    <ShoppingCart size={16} />
+                    <ShoppingCart size={18} />
                     <span>Add to Cart</span>
                   </motion.button>
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => handleRequestQuote(product)}
-                    style={{ flex: 1, minWidth: '120px', backgroundColor: '#10B981', color: 'white', padding: '10px', borderRadius: '9999px', fontWeight: 500, fontSize: '14px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', transition: 'background-color 0.2s' }}
+                    style={{ flex: 1, minWidth: '140px', backgroundColor: '#10B981', color: 'white', padding: '12px 20px', borderRadius: '9999px', fontWeight: 600, fontSize: '15px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', transition: 'background-color 0.2s' }}
                     onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10B981'}
                   >
                     <span>Request Quote</span>
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleQuickView(product)}
-                    style={{ padding: '10px 16px', border: '2px solid #2448D8', color: '#2448D8', borderRadius: '9999px', fontWeight: 500, fontSize: '14px', cursor: 'pointer', backgroundColor: 'transparent', transition: 'all 0.2s' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#2448D8'; e.currentTarget.style.color = 'white'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#2448D8'; }}
-                  >
-                    Details
                   </motion.button>
                 </div>
               </div>
@@ -237,16 +234,6 @@ const ProductCatalogue = () => {
           </motion.div>
         )}
       </div>
-
-      {/* Product Modal */}
-      <ProductModal
-        product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onAddToCart={handleAddToCart}
-        onToggleFavorite={toggleFavorite}
-        isFavorite={selectedProduct ? favorites.has(selectedProduct.id) : false}
-      />
     </section>
   );
 };
