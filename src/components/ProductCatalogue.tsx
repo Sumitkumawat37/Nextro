@@ -2,17 +2,16 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Filter, Heart, Share2, ShoppingCart } from 'lucide-react';
+import { Filter, Heart, Share2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import products from '@/data/products.json';
 import categories from '@/data/categories.json';
-import { useCart } from '@/context/CartContext';
 
 const ProductCatalogue = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const router = useRouter();
-  const { addToCart } = useCart();
 
   const toggleFavorite = useCallback((productId: string) => {
     setFavorites((prev) => {
@@ -26,14 +25,6 @@ const ProductCatalogue = () => {
     });
   }, []);
 
-  const handleAddToCart = useCallback((product: any) => {
-    addToCart(product);
-  }, [addToCart]);
-
-  const handleRequestQuote = useCallback((product: any) => {
-    router.push('/contact');
-  }, [router]);
-
   const handleShare = useCallback((product: any) => {
     if (navigator.share) {
       navigator.share({
@@ -42,7 +33,6 @@ const ProductCatalogue = () => {
         url: window.location.href,
       });
     } else {
-      // Fallback: copy to clipboard
       navigator.clipboard.writeText(window.location.href);
       alert('Link copied to clipboard!');
     }
@@ -118,43 +108,47 @@ const ProductCatalogue = () => {
               style={{ backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', border: '1px solid #F3F4F6', transition: 'all 0.3s', overflow: 'hidden' }}
             >
               {/* Product Image */}
-              <div style={{ position: 'relative', height: '240px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden' }}>
-                {product.image ? (
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '24px' }}
-                  />
-                ) : (
-                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ fontSize: '64px' }}>📺</div>
+              <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+                <div style={{ position: 'relative', height: '240px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden', cursor: 'pointer' }}>
+                  {product.image ? (
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '24px' }}
+                    />
+                  ) : (
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ fontSize: '64px' }}>📺</div>
+                    </div>
+                  )}
+                  <div style={{ position: 'absolute', top: '12px', right: '12px', display: 'flex', gap: '8px' }}>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => { e.preventDefault(); toggleFavorite(product.id); }}
+                      style={{ padding: '8px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', cursor: 'pointer', color: favorites.has(product.id) ? '#EF4444' : '#4B5563' }}
+                    >
+                      <Heart size={18} fill={favorites.has(product.id) ? 'currentColor' : 'none'} />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => { e.preventDefault(); handleShare(product); }}
+                      style={{ padding: '8px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', cursor: 'pointer', color: '#4B5563' }}
+                    >
+                      <Share2 size={18} />
+                    </motion.button>
                   </div>
-                )}
-                <div style={{ position: 'absolute', top: '12px', right: '12px', display: 'flex', gap: '8px' }}>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => toggleFavorite(product.id)}
-                    style={{ padding: '8px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', cursor: 'pointer', color: favorites.has(product.id) ? '#EF4444' : '#4B5563' }}
-                  >
-                    <Heart size={18} fill={favorites.has(product.id) ? 'currentColor' : 'none'} />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => handleShare(product)}
-                    style={{ padding: '8px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.7)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255, 255, 255, 0.3)', cursor: 'pointer', color: '#4B5563' }}
-                  >
-                    <Share2 size={18} />
-                  </motion.button>
                 </div>
-              </div>
+              </Link>
 
               {/* Product Info */}
               <div style={{ padding: '24px' }}>
-                <div style={{ fontSize: '13px', color: '#2448D8', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{product.category}</div>
-                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#10172B', marginBottom: '12px', lineHeight: '1.3' }}>{product.name}</h3>
-                <p style={{ fontSize: '15px', color: '#4B5563', marginBottom: '20px', lineHeight: '1.6' }}>{product.shortDescription}</p>
+                <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+                  <div style={{ fontSize: '13px', color: '#2448D8', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{product.category}</div>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#10172B', marginBottom: '12px', lineHeight: '1.3' }}>{product.name}</h3>
+                  <p style={{ fontSize: '15px', color: '#4B5563', marginBottom: '20px', lineHeight: '1.6' }}>{product.shortDescription}</p>
+                </Link>
 
                 {/* Full Description */}
                 <div style={{ backgroundColor: '#F9FAFB', padding: '16px', borderRadius: '12px', marginBottom: '20px' }}>
@@ -194,27 +188,60 @@ const ProductCatalogue = () => {
 
                 {/* Actions */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => handleAddToCart(product)}
-                    style={{ flex: 1, minWidth: '140px', backgroundColor: '#2448D8', color: 'white', padding: '12px 20px', borderRadius: '9999px', fontWeight: 600, fontSize: '15px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', transition: 'background-color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
-                  >
-                    <ShoppingCart size={18} />
-                    <span>Add to Cart</span>
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => handleRequestQuote(product)}
-                    style={{ flex: 1, minWidth: '140px', backgroundColor: '#10B981', color: 'white', padding: '12px 20px', borderRadius: '9999px', fontWeight: 600, fontSize: '15px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', transition: 'background-color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10B981'}
-                  >
-                    <span>Request Quote</span>
-                  </motion.button>
+                  <Link href={`/products/${product.id}`} style={{ textDecoration: 'none', flex: 1 }}>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      style={{
+                        width: '100%',
+                        minWidth: '140px',
+                        backgroundColor: '#2448D8',
+                        color: 'white',
+                        padding: '12px 20px',
+                        borderRadius: '9999px',
+                        fontWeight: 600,
+                        fontSize: '15px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px',
+                        transition: 'background-color 0.2s'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
+                    >
+                      <span>View Details</span>
+                    </motion.button>
+                  </Link>
+                  <Link href="/contact" style={{ textDecoration: 'none', flex: 1 }}>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      style={{
+                        width: '100%',
+                        minWidth: '140px',
+                        backgroundColor: '#10B981',
+                        color: 'white',
+                        padding: '12px 20px',
+                        borderRadius: '9999px',
+                        fontWeight: 600,
+                        fontSize: '15px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px',
+                        transition: 'background-color 0.2s'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10B981'}
+                    >
+                      <span>Request Quote</span>
+                    </motion.button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

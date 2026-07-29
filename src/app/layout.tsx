@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,9 +44,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col">
-        <CartProvider>{children}</CartProvider>
-      </body>
+      <body className="min-h-screen flex flex-col">{children}</body>
     </html>
   );
 }

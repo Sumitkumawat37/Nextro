@@ -2,17 +2,13 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail, ShoppingCart } from 'lucide-react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
-import { useCart } from '@/context/CartContext';
-import Cart from '@/components/Cart';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const { getTotalItems } = useCart();
 
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 20);
@@ -92,45 +88,6 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsCartOpen(true)}
-              style={{
-                position: 'relative',
-                padding: '8px',
-                borderRadius: '50%',
-                backgroundColor: '#F3F4F6',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
-            >
-              <ShoppingCart size={20} style={{ color: '#2448D8' }} />
-              {getTotalItems() > 0 && (
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '-4px',
-                    right: '-4px',
-                    backgroundColor: '#EF4444',
-                    color: 'white',
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {getTotalItems()}
-                </span>
-              )}
-            </motion.button>
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -210,48 +167,6 @@ const Navigation = () => {
                 </button>
               </Link>
               
-              {/* Cart Button */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setIsCartOpen(true);
-                  setIsMobileMenuOpen(false);
-                }}
-                style={{
-                  position: 'relative',
-                  padding: '12px',
-                  borderRadius: '9999px',
-                  backgroundColor: '#F3F4F6',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
-              >
-                <ShoppingCart size={20} style={{ color: '#2448D8' }} />
-                <span style={{ fontSize: '14px', fontWeight: 500, color: '#374151' }}>Cart</span>
-                {getTotalItems() > 0 && (
-                  <span
-                    style={{
-                      backgroundColor: '#EF4444',
-                      color: 'white',
-                      fontSize: '12px',
-                      fontWeight: 600,
-                      padding: '2px 8px',
-                      borderRadius: '9999px',
-                    }}
-                  >
-                    {getTotalItems()}
-                  </span>
-                )}
-              </motion.button>
-              
               {/* Contact Info */}
               <div style={{ paddingTop: 'clamp(16px, 4vw, 24px)', borderTop: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 2vw, 12px)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: '#4B5563', overflowWrap: 'break-word' }}>
@@ -267,9 +182,6 @@ const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Cart Component */}
-      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </motion.nav>
   );
 };
