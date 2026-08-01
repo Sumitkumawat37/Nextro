@@ -1,9 +1,13 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
 import products from '@/data/products.json';
 import { ShoppingCart, Heart } from 'lucide-react';
 import Link from 'next/link';
+import { use } from 'react';
 
 interface ProductPageProps {
   params: Promise<{
@@ -11,8 +15,8 @@ interface ProductPageProps {
   }>;
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { id } = await params;
+export default function ProductPage({ params }: ProductPageProps) {
+  const { id } = use(params);
   const product = products.products.find((p) => p.id === id);
 
   if (!product) {
@@ -237,10 +241,4 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <Footer />
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  return products.products.map((product) => ({
-    id: product.id,
-  }));
 }
