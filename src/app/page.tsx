@@ -3,8 +3,8 @@ import Hero from '@/components/Hero';
 import Solutions from '@/components/Solutions';
 import Industries from '@/components/Industries';
 import WhyNextro from '@/components/WhyNextro';
-import Projects from '@/components/Projects';
-import Testimonials from '@/components/Testimonials';
+import Branches from '@/components/Branches';
+import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -15,8 +15,8 @@ export default function Home() {
       <Solutions />
       <Industries />
       <WhyNextro />
-      <Projects />
-      <Testimonials />
+      <Gallery />
+      <Branches />
       <Footer />
     </div>
   );

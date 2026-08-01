@@ -98,33 +98,36 @@ const Navigation = () => {
               onClick={() => setIsCartOpen(true)}
               style={{
                 position: 'relative',
-                padding: '8px',
-                borderRadius: '50%',
-                backgroundColor: '#F3F4F6',
+                padding: '12px',
+                borderRadius: '12px',
+                backgroundColor: '#2448D8',
                 border: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
+                boxShadow: '0 4px 12px rgba(36, 72, 216, 0.3)',
               }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
             >
-              <ShoppingCart size={20} style={{ color: '#2448D8' }} />
+              <ShoppingCart size={22} style={{ color: 'white' }} />
               {getTotalItems() > 0 && (
                 <span
                   style={{
                     position: 'absolute',
-                    top: '-4px',
-                    right: '-4px',
+                    top: '-6px',
+                    right: '-6px',
                     backgroundColor: '#EF4444',
                     color: 'white',
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    width: '20px',
-                    height: '20px',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    width: '22px',
+                    height: '22px',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    boxShadow: '0 2px 8px rgba(239, 68, 68, 0.4)',
+                    border: '2px solid white',
                   }}
                 >
                   {getTotalItems()}
@@ -212,39 +215,42 @@ const Navigation = () => {
               
               {/* Cart Button */}
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => {
                   setIsCartOpen(true);
                   setIsMobileMenuOpen(false);
                 }}
                 style={{
                   position: 'relative',
-                  padding: '12px',
-                  borderRadius: '9999px',
-                  backgroundColor: '#F3F4F6',
+                  padding: '16px 24px',
+                  borderRadius: '12px',
+                  backgroundColor: '#2448D8',
                   border: 'none',
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
+                  gap: '12px',
+                  boxShadow: '0 4px 12px rgba(36, 72, 216, 0.3)',
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
               >
-                <ShoppingCart size={20} style={{ color: '#2448D8' }} />
-                <span style={{ fontSize: '14px', fontWeight: 500, color: '#374151' }}>Cart</span>
+                <ShoppingCart size={22} style={{ color: 'white' }} />
+                <span style={{ fontSize: '16px', fontWeight: 600, color: 'white' }}>Cart</span>
                 {getTotalItems() > 0 && (
                   <span
                     style={{
                       backgroundColor: '#EF4444',
                       color: 'white',
                       fontSize: '12px',
-                      fontWeight: 600,
-                      padding: '2px 8px',
+				      fontWeight: 700,
+                      padding: '4px 10px',
                       borderRadius: '9999px',
+                      boxShadow: '0 2px 8px rgba(239, 68, 68, 0.4)',
+                      border: '2px solid white',
                     }}
                   >
                     {getTotalItems()}

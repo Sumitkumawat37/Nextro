@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
-import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,9 +47,7 @@ export default function RootLayout({
       className={`${inter.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col">
-        <CartProvider>
-          <PageTransition>{children}</PageTransition>
-        </CartProvider>
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );

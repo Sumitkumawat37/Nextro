@@ -1,185 +1,108 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Building2, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Building2, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 const Contact = () => {
+  const services = [
+    'Smart Classroom Setup',
+    'Video Conference Solutions',
+    'Interactive Flat Panel Installation',
+    'Digital Podium Setup',
+    'Recording Studio Setup',
+    'Active LED Installation',
+    'PTZ Camera Installation',
+    'Audio System Integration',
+  ];
+
   return (
-    <section id="contact" style={{ padding: '120px 0', backgroundColor: '#FFFFFF' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
+    <section id="contact" style={{ padding: 'clamp(48px, 8vw, 96px) 0', backgroundColor: 'white' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 16px', width: '100%', boxSizing: 'border-box' }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          style={{ marginBottom: '64px' }}
+          transition={{ duration: 0.6 }}
+          style={{ textAlign: 'center', marginBottom: 'clamp(32px, 6vw, 64px)' }}
         >
-          <span style={{ 
-            fontSize: '13px', 
-            fontWeight: 600, 
-            color: '#2448D8', 
-            letterSpacing: '0.5px', 
-            textTransform: 'uppercase',
-            marginBottom: '16px',
-            display: 'block'
-          }}>
-            Contact
-          </span>
-          <h2 style={{ 
-            fontSize: 'clamp(36px, 5vw, 48px)', 
-            fontWeight: 600, 
-            marginBottom: '20px', 
-            lineHeight: 1.2,
-            letterSpacing: '-0.02em',
-            color: '#0F172A'
-          }}>
-            Let's start a
-            <br />
-            <span style={{ color: '#2448D8' }}>conversation</span>
+          <h2 style={{ fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 700, marginBottom: '16px', overflowWrap: 'break-word' }}>
+            <span style={{ background: 'linear-gradient(135deg, #2448D8 0%, #3D5FE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Get In Touch</span>
           </h2>
-          <p style={{ 
-            fontSize: '18px', 
-            color: '#64748B', 
-            maxWidth: '540px', 
-            lineHeight: 1.7,
-            fontWeight: 400
-          }}>
-            Ready to transform your space? Contact us for a free consultation and quote.
+          <p style={{ fontSize: 'clamp(16px, 3vw, 20px)', color: '#4B5563', maxWidth: '672px', margin: '0 auto', lineHeight: 1.6, padding: '0 16px', overflowWrap: 'break-word' }}>
+            Ready to transform your space? Contact us for a free consultation and quote. Our team is ready to help you find the perfect AV solution.
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '48px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(24px, 5vw, 48px)' }}>
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 4vw, 24px)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 'clamp(16px, 4vw, 24px)' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#0F172A', marginBottom: '8px' }}>First Name</label>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#374151', marginBottom: '8px' }}>Name</label>
                   <input
                     type="text"
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      borderRadius: '8px', 
-                      border: '1px solid #E2E8F0', 
-                      outline: 'none', 
-                      fontSize: '15px',
-                      transition: 'all 0.2s'
-                    }}
-                    placeholder="John"
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #D1D5DB', outline: 'none', transition: 'all 0.2s' }}
+                    placeholder="Your name"
                     suppressHydrationWarning
-                    onFocus={(e) => e.currentTarget.style.borderColor = '#2448D8'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = '#E2E8F0'}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#0F172A', marginBottom: '8px' }}>Last Name</label>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#374151', marginBottom: '8px' }}>Email</label>
                   <input
-                    type="text"
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      borderRadius: '8px', 
-                      border: '1px solid #E2E8F0', 
-                      outline: 'none', 
-                      fontSize: '15px',
-                      transition: 'all 0.2s'
-                    }}
-                    placeholder="Doe"
+                    type="email"
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #D1D5DB', outline: 'none', transition: 'all 0.2s' }}
+                    placeholder="your@email.com"
                     suppressHydrationWarning
-                    onFocus={(e) => e.currentTarget.style.borderColor = '#2448D8'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = '#E2E8F0'}
                   />
                 </div>
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#0F172A', marginBottom: '8px' }}>Email</label>
-                <input
-                  type="email"
-                  style={{ 
-                    width: '100%', 
-                    padding: '12px 16px', 
-                    borderRadius: '8px', 
-                    border: '1px solid #E2E8F0', 
-                    outline: 'none', 
-                    fontSize: '15px',
-                    transition: 'all 0.2s'
-                  }}
-                  placeholder="john@company.com"
-                  suppressHydrationWarning
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#2448D8'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = '#E2E8F0'}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#0F172A', marginBottom: '8px' }}>Phone</label>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#374151', marginBottom: '8px' }}>Phone</label>
                 <input
                   type="tel"
-                  style={{ 
-                    width: '100%', 
-                    padding: '12px 16px', 
-                    borderRadius: '8px', 
-                    border: '1px solid #E2E8F0', 
-                    outline: 'none', 
-                    fontSize: '15px',
-                    transition: 'all 0.2s'
-                  }}
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #D1D5DB', outline: 'none', transition: 'all 0.2s' }}
                   placeholder="+91 98765 43210"
                   suppressHydrationWarning
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#2448D8'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = '#E2E8F0'}
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#0F172A', marginBottom: '8px' }}>Message</label>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#374151', marginBottom: '8px' }}>Subject</label>
+                <select style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #D1D5DB', outline: 'none', transition: 'all 0.2s' }} suppressHydrationWarning>
+                  <option>Request Quote</option>
+                  <option>Product Inquiry</option>
+                  <option>Technical Support</option>
+                  <option>Installation Service</option>
+                  <option>Partnership</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#374151', marginBottom: '8px' }}>Message</label>
                 <textarea
                   rows={4}
-                  style={{ 
-                    width: '100%', 
-                    padding: '12px 16px', 
-                    borderRadius: '8px', 
-                    border: '1px solid #E2E8F0', 
-                    outline: 'none', 
-                    transition: 'all 0.2s', 
-                    resize: 'none',
-                    fontSize: '15px'
-                  }}
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid #D1D5DB', outline: 'none', transition: 'all 0.2s', resize: 'none' }}
                   placeholder="Tell us about your requirements..."
                   suppressHydrationWarning
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#2448D8'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = '#E2E8F0'}
                 />
               </div>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                style={{ 
-                  width: '100%', 
-                  backgroundColor: '#0F172A', 
-                  color: 'white', 
-                  padding: '16px', 
-                  borderRadius: '8px', 
-                  fontWeight: 500, 
-                  fontSize: '15px',
-                  border: 'none', 
-                  cursor: 'pointer', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  gap: '8px',
-                  transition: 'all 0.2s ease'
-                }}
+                style={{ width: '100%', backgroundColor: '#2448D8', color: 'white', padding: '16px', borderRadius: '12px', fontWeight: 600, boxShadow: '0 10px 40px rgba(36, 72, 216, 0.3)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', transition: 'background-color 0.2s' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
               >
+                <Send size={20} />
                 <span>Send Message</span>
-                <ArrowRight size={16} />
               </motion.button>
             </form>
           </motion.div>
@@ -189,164 +112,148 @@ const Contact = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}
+            transition={{ duration: 0.6 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
           >
             {/* Map */}
-            <div style={{ 
-              backgroundColor: '#F8FAFC', 
-              borderRadius: '12px', 
-              height: '280px', 
-              border: '1px solid #E2E8F0',
-              overflow: 'hidden'
-            }}>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.654321!2d75.7872!3d26.9124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!!!1s0x0%3A0x0!2zMjbCsDU0JzQ0LjYiTiA3NsKwNDcnMTMuOSJF!5e0!3m2!1sen!2sin!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div style={{ background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', borderRadius: '16px', height: '256px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ textAlign: 'center' }}>
+                <MapPin style={{ width: '48px', height: '48px', color: '#2448D8', margin: '0 auto 8px' }} />
+                <p style={{ color: '#4B5563' }}>FF-29, Jaipur Electronic Market, Ridhi Sidhi, Jaipur, Rajasthan</p>
+              </div>
             </div>
 
             {/* Contact Details */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                <div style={{ 
-                  width: '40px', 
-                  height: '40px', 
-                  borderRadius: '8px', 
-                  backgroundColor: '#F8FAFC',
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <Phone size={20} style={{ color: '#2448D8' }} />
-                </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '16px', backgroundColor: '#F9FAFB', borderRadius: '12px' }}>
+                <Phone style={{ width: '24px', height: '24px', color: '#2448D8', marginTop: '4px' }} />
                 <div>
-                  <h4 style={{ fontWeight: 600, color: '#0F172A', fontSize: '15px', marginBottom: '4px' }}>Phone</h4>
-                  <p style={{ color: '#64748B', fontSize: '14px' }}>+91-7073500169</p>
+                  <h4 style={{ fontWeight: 600, color: '#10172B' }}>Phone</h4>
+                  <p style={{ color: '#4B5563' }}>+91-7073500169</p>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                <div style={{ 
-                  width: '40px', 
-                  height: '40px', 
-                  borderRadius: '8px', 
-                  backgroundColor: '#F8FAFC',
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <Mail size={20} style={{ color: '#2448D8' }} />
-                </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '16px', backgroundColor: '#F9FAFB', borderRadius: '12px' }}>
+                <Mail style={{ width: '24px', height: '24px', color: '#2448D8', marginTop: '4px' }} />
                 <div>
-                  <h4 style={{ fontWeight: 600, color: '#0F172A', fontSize: '15px', marginBottom: '4px' }}>Email</h4>
-                  <p style={{ color: '#64748B', fontSize: '14px' }}>nextro081@gmail.com</p>
+                  <h4 style={{ fontWeight: 600, color: '#10172B' }}>Email</h4>
+                  <p style={{ color: '#4B5563' }}>nextro081@gmail.com</p>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                <div style={{ 
-                  width: '40px', 
-                  height: '40px', 
-                  borderRadius: '8px', 
-                  backgroundColor: '#F8FAFC',
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <MapPin size={20} style={{ color: '#2448D8' }} />
-                </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '16px', backgroundColor: '#F9FAFB', borderRadius: '12px' }}>
+                <Building2 style={{ width: '24px', height: '24px', color: '#2448D8', marginTop: '4px' }} />
                 <div>
-                  <h4 style={{ fontWeight: 600, color: '#0F172A', fontSize: '15px', marginBottom: '4px' }}>Address</h4>
-                  <p style={{ color: '#64748B', fontSize: '14px', lineHeight: 1.6 }}>
-                    FF-29, Jaipur Electronic Market,<br />
-                    Ridhi Sidhi, Jaipur, Rajasthan
-                  </p>
+                  <h4 style={{ fontWeight: 600, color: '#10172B' }}>Director</h4>
+                  <p style={{ color: '#4B5563' }}>Govind Kumar</p>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                <div style={{ 
-                  width: '40px', 
-                  height: '40px', 
-                  borderRadius: '8px', 
-                  backgroundColor: '#F8FAFC',
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <Clock size={20} style={{ color: '#2448D8' }} />
-                </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '16px', backgroundColor: '#F9FAFB', borderRadius: '12px' }}>
+                <Clock style={{ width: '24px', height: '24px', color: '#2448D8', marginTop: '4px' }} />
                 <div>
-                  <h4 style={{ fontWeight: 600, color: '#0F172A', fontSize: '15px', marginBottom: '4px' }}>Working Hours</h4>
-                  <p style={{ color: '#64748B', fontSize: '14px' }}>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                  <h4 style={{ fontWeight: 600, color: '#10172B' }}>Working Hours</h4>
+                  <p style={{ color: '#4B5563' }}>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                  <p style={{ color: '#4B5563', fontSize: '13px' }}>Sunday: Closed</p>
                 </div>
+              </div>
+            </div>
+
+            {/* Services We Offer */}
+            <div style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', borderRadius: '16px', padding: 'clamp(16px, 4vw, 24px)', color: 'white', boxShadow: '0 10px 40px rgba(240, 147, 251, 0.3)', width: '100%', boxSizing: 'border-box' }}>
+              <h4 style={{ fontSize: 'clamp(16px, 3vw, 18px)', fontWeight: 700, marginBottom: '16px', overflowWrap: 'break-word' }}>Services We Offer</h4>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
+                {services.map((service, index) => (
+                  <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: 'clamp(13px, 2vw, 14px)', opacity: 0.95, wordBreak: 'break-word' }}>
+                    <CheckCircle size={16} style={{ flexShrink: 0 }} />
+                    <span>{service}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div style={{ display: 'flex', flexDirection: 'row', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '16px', flexWrap: 'wrap' }}>
               <motion.a
                 href="https://wa.me/917073500169"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 style={{ 
-                  flex: 1, 
-                  backgroundColor: '#0F172A', 
+                  flex: '1 1 200px', 
+                  minWidth: '200px',
+                  backgroundColor: '#22C55E', 
                   color: 'white', 
                   padding: '14px 20px', 
-                  borderRadius: '8px', 
-                  fontWeight: 500, 
-                  fontSize: '14px',
+                  borderRadius: '12px', 
+                  fontWeight: 600, 
                   border: 'none', 
                   cursor: 'pointer', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   gap: '8px', 
+                  transition: 'background-color 0.2s', 
                   textDecoration: 'none',
-                  transition: 'all 0.2s ease'
+                  fontSize: '16px'
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#16A34A'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#22C55E'}
               >
-                <MessageCircle size={18} />
+                <MessageCircle size={20} />
                 <span>WhatsApp</span>
               </motion.a>
               <motion.a
                 href="tel:+917073500169"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 style={{ 
-                  flex: 1, 
-                  backgroundColor: 'white', 
-                  color: '#0F172A', 
-                  border: '1px solid #E2E8F0',
+                  flex: '1 1 200px', 
+                  minWidth: '200px',
+                  backgroundColor: '#2448D8', 
+                  color: 'white', 
                   padding: '14px 20px', 
-                  borderRadius: '8px', 
-                  fontWeight: 500, 
-                  fontSize: '14px',
+                  borderRadius: '12px', 
+                  fontWeight: 600, 
+                  border: 'none', 
                   cursor: 'pointer', 
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center', 
                   gap: '8px', 
+                  transition: 'background-color 0.2s', 
                   textDecoration: 'none',
-                  transition: 'all 0.2s ease'
+                  fontSize: '16px'
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
               >
-                <Phone size={18} />
-                <span>Call</span>
+                <Phone size={20} />
+                <span>Call Now</span>
               </motion.a>
             </div>
           </motion.div>
         </div>
+
+        {/* Branch Locations */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          style={{ marginTop: 'clamp(32px, 6vw, 64px)', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', borderRadius: '16px', padding: 'clamp(24px, 5vw, 48px)', color: 'white', boxShadow: '0 10px 40px rgba(102, 126, 234, 0.3)', width: '100%', boxSizing: 'border-box' }}
+        >
+          <h3 style={{ fontSize: 'clamp(20px, 4vw, 28px)', fontWeight: 700, marginBottom: '16px', textAlign: 'center', overflowWrap: 'break-word' }}>Our Branch Locations</h3>
+          <p style={{ fontSize: 'clamp(14px, 3vw, 18px)', marginBottom: '32px', textAlign: 'center', maxWidth: '672px', margin: '0 auto 32px', opacity: 0.95, lineHeight: 1.6, padding: '0 16px', overflowWrap: 'break-word' }}>
+            We serve customers across India with our extensive branch network. Visit any of our locations for personalized service.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 'clamp(12px, 3vw, 16px)' }}>
+            {['Jaipur', 'Kanpur', 'Lucknow', 'Jhalawar', 'Bhilwara', 'Bharatpur', 'Sri Ganganagar', 'Ratlam', 'Bhopal', 'Gwalior', 'Kota', 'Patna'].map((location, index) => (
+              <div key={index} style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', borderRadius: '12px', padding: '16px', textAlign: 'center', border: '1px solid rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(10px)', width: '100%', boxSizing: 'border-box' }}>
+                <MapPin size={20} style={{ margin: '0 auto 8px', opacity: 0.9 }} />
+                <p style={{ fontSize: 'clamp(14px, 2vw, 16px)', fontWeight: 500, overflowWrap: 'break-word' }}>{location}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -140,7 +140,6 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
                             src={item.image}
                             alt={item.name}
                             style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px' }}
-                            loading="lazy"
                           />
                         ) : (
                           <div style={{ fontSize: '32px' }}>📺</div>

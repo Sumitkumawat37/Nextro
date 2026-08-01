@@ -102,7 +102,7 @@ const ProductCatalogue = () => {
         </motion.div>
 
         {/* Product Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(16px, 4vw, 24px)' }}>
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -115,13 +115,12 @@ const ProductCatalogue = () => {
             >
               {/* Product Image */}
               <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
-                <div style={{ position: 'relative', height: '240px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden', cursor: 'pointer' }}>
+                <div style={{ position: 'relative', height: '200px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden', cursor: 'pointer' }}>
                   {product.image ? (
                     <img 
                       src={product.image} 
                       alt={product.name}
                       style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '24px' }}
-                      loading="lazy"
                     />
                   ) : (
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -150,7 +149,7 @@ const ProductCatalogue = () => {
               </Link>
 
               {/* Product Info */}
-              <div style={{ padding: '24px' }}>
+              <div style={{ padding: 'clamp(16px, 4vw, 24px)' }}>
                 <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
                   <div style={{ fontSize: '13px', color: '#2448D8', fontWeight: 600, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{product.category}</div>
                   <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#10172B', marginBottom: '12px', lineHeight: '1.3' }}>{product.name}</h3>
@@ -201,13 +200,13 @@ const ProductCatalogue = () => {
                     onClick={() => handleAddToCart(product)}
                     style={{
                       flex: 1,
-                      minWidth: '140px',
+                      minWidth: '120px',
                       backgroundColor: '#2448D8',
                       color: 'white',
-                      padding: '12px 20px',
+                      padding: 'clamp(10px, 3vw, 12px) clamp(16px, 4vw, 20px)',
                       borderRadius: '9999px',
                       fontWeight: 600,
-                      fontSize: '15px',
+                      fontSize: 'clamp(13px, 3vw, 15px)',
                       border: 'none',
                       cursor: 'pointer',
                       display: 'flex',
@@ -228,13 +227,13 @@ const ProductCatalogue = () => {
                       whileTap={{ scale: 0.98 }}
                       style={{
                         width: '100%',
-                        minWidth: '140px',
+                        minWidth: '120px',
                         backgroundColor: '#10B981',
                         color: 'white',
-                        padding: '12px 20px',
+                        padding: 'clamp(10px, 3vw, 12px) clamp(16px, 4vw, 20px)',
                         borderRadius: '9999px',
                         fontWeight: 600,
-                        fontSize: '15px',
+                        fontSize: 'clamp(13px, 3vw, 15px)',
                         border: 'none',
                         cursor: 'pointer',
                         display: 'flex',

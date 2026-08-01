@@ -103,7 +103,6 @@ const Gallery = () => {
                   src={item.image} 
                   alt={item.title}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', padding: '16px' }}
-                  loading="lazy"
                 />
               </div>
               <div style={{ padding: 'clamp(12px, 3vw, 16px)' }}>
