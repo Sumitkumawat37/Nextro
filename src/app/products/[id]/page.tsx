@@ -15,7 +15,21 @@ export default function ProductPage({ params }: ProductPageProps) {
   const product = products.products.find((p) => p.id === params.id);
 
   if (!product) {
-    notFound();
+    return (
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <div style={{ padding: '120px 0 64px', backgroundColor: 'white' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+            <h1 style={{ fontSize: '48px', fontWeight: 700, color: '#10172B', marginBottom: '16px' }}>Product Not Found</h1>
+            <p style={{ fontSize: '18px', color: '#4B5563', marginBottom: '32px' }}>The product you're looking for doesn't exist.</p>
+            <Link href="/products" style={{ color: '#2448D8', textDecoration: 'none', fontWeight: 600 }}>
+              ← Back to Products
+            </Link>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   return (
