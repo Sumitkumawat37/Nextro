@@ -98,18 +98,23 @@ const Navigation = () => {
               onClick={() => setIsCartOpen(true)}
               style={{
                 position: 'relative',
-                padding: '12px',
+                padding: '12px 20px',
                 borderRadius: '12px',
                 backgroundColor: '#2448D8',
                 border: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
                 boxShadow: '0 4px 12px rgba(36, 72, 216, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                zIndex: 50,
               }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
             >
               <ShoppingCart size={22} style={{ color: 'white' }} />
+              <span style={{ color: 'white', fontWeight: 600, fontSize: '14px' }}>Cart</span>
               {getTotalItems() > 0 && (
                 <span
                   style={{
@@ -161,14 +166,59 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            style={{ display: !isMobile ? 'none' : 'block', padding: '8px', borderRadius: '8px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', transition: 'background-color 0.2s' }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div style={{ display: !isMobile ? 'none' : 'flex', alignItems: 'center', gap: '12px' }}>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsCartOpen(true)}
+              style={{
+                position: 'relative',
+                padding: '10px',
+                borderRadius: '10px',
+                backgroundColor: '#2448D8',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                boxShadow: '0 4px 12px rgba(36, 72, 216, 0.3)',
+                zIndex: 50,
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
+            >
+              <ShoppingCart size={20} style={{ color: 'white' }} />
+              {getTotalItems() > 0 && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '-4px',
+                    right: '-4px',
+                    backgroundColor: '#EF4444',
+                    color: 'white',
+                    fontSize: '10px',
+                    fontWeight: 700,
+                    width: '18px',
+                    height: '18px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 2px 8px rgba(239, 68, 68, 0.4)',
+                    border: '2px solid white',
+                  }}
+                >
+                  {getTotalItems()}
+                </span>
+              )}
+            </motion.button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              style={{ padding: '8px', borderRadius: '8px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', transition: 'background-color 0.2s' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
