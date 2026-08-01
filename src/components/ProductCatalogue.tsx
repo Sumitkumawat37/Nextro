@@ -2,16 +2,18 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Filter, Heart, Share2 } from 'lucide-react';
+import { Filter, Heart, Share2, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import products from '@/data/products.json';
 import categories from '@/data/categories.json';
+import { useCart } from '@/context/CartContext';
 
 const ProductCatalogue = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const router = useRouter();
+  const { addToCart } = useCart();
 
   const toggleFavorite = useCallback((productId: string) => {
     setFavorites((prev) => {
@@ -24,6 +26,10 @@ const ProductCatalogue = () => {
       return newFavorites;
     });
   }, []);
+
+  const handleAddToCart = useCallback((product: any) => {
+    addToCart(product);
+  }, [addToCart]);
 
   const handleShare = useCallback((product: any) => {
     if (navigator.share) {
@@ -188,34 +194,34 @@ const ProductCatalogue = () => {
 
                 {/* Actions */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => handleAddToCart(product)}
+                    style={{
+                      flex: 1,
+                      minWidth: '140px',
+                      backgroundColor: '#2448D8',
+                      color: 'white',
+                      padding: '12px 20px',
+                      borderRadius: '9999px',
+                      fontWeight: 600,
+                      fontSize: '15px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      transition: 'background-color 0.2s'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
+                  >
+                    <ShoppingCart size={18} />
+                    <span>Add to Cart</span>
+                  </motion.button>
                   <Link href={`/products/${product.id}`} style={{ textDecoration: 'none', flex: 1 }}>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      style={{
-                        width: '100%',
-                        minWidth: '140px',
-                        backgroundColor: '#2448D8',
-                        color: 'white',
-                        padding: '12px 20px',
-                        borderRadius: '9999px',
-                        fontWeight: 600,
-                        fontSize: '15px',
-                        border: 'none',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '8px',
-                        transition: 'background-color 0.2s'
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
-                    >
-                      <span>View Details</span>
-                    </motion.button>
-                  </Link>
-                  <Link href="/contact" style={{ textDecoration: 'none', flex: 1 }}>
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -239,7 +245,7 @@ const ProductCatalogue = () => {
                       onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
                       onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10B981'}
                     >
-                      <span>Request Quote</span>
+                      <span>View Details</span>
                     </motion.button>
                   </Link>
                 </div>
