@@ -6,7 +6,7 @@
       "category": "Interactive Display",
       "shortDescription": "Zero Bonding Technology with Ultra HD 4K display for modern classrooms",
       "description": "Interactive Flat Panel featuring Zero Bonding Technology, Low Parallax Writing, Wider Viewing Angle, Eye Protection, Dual Pen Support, Ultra HD 4K, and AI Panel capabilities for enhanced collaborative learning.",
-      "image": "/products/interactive-flat-panel.png",
+      "image": "/products/1.png",
       "features": ["Zero Bonding Technology", "Low Parallax Writing", "Wider Viewing Angle", "Eye Protection", "Dual Pen Support", "Ultra HD 4K", "AI Panel"],
       "applications": ["Classrooms", "Conference Rooms", "Training Centers"]
     },
@@ -16,7 +16,7 @@
       "category": "Interactive Display",
       "shortDescription": "65-inch Interactive Flat Panel with advanced touch technology",
       "description": "65-inch Interactive Flat Panel with advanced touch technology, perfect for medium-sized classrooms and meeting rooms with crystal clear display and responsive touch interface.",
-      "image": "/products/interactive-flat-panel-2.png",
+      "image": "/products/2.png",
       "features": ["65-inch Display", "Advanced Touch", "4K Resolution", "Multi-touch Support", "Anti-glare Screen"],
       "applications": ["Classrooms", "Meeting Rooms", "Training Centers"]
     },
@@ -26,7 +26,7 @@
       "category": "Interactive Display",
       "shortDescription": "75-inch Interactive Flat Panel for large venues and auditoriums",
       "description": "75-inch Interactive Flat Panel designed for large venues and auditoriums, providing exceptional visibility and interactive capabilities for presentations and collaborative sessions.",
-      "image": "/products/interactive-flat-panel-3.png",
+      "image": "/products/3.png",
       "features": ["75-inch Display", "Large Venue Optimized", "4K Resolution", "Wide Viewing Angle", "High Brightness"],
       "applications": ["Auditoriums", "Large Classrooms", "Conference Halls"]
     },
@@ -66,7 +66,7 @@
       "category": "PTZ Camera",
       "shortDescription": "Full HD PTZ camera for professional video production",
       "description": "Full HD PTZ camera with reliable pan-tilt-zoom functionality, ideal for educational institutions and businesses requiring professional video capture and streaming.",
-      "image": "/products/full-ptz-camera.png",
+      "image": "/products/4.png",
       "features": ["Full HD 1080p", "PTZ Functionality", "Smooth Movement", "Easy Setup", "Multiple Presets"],
       "applications": ["Classrooms", "Conference Rooms", "Live Streaming"]
     },
@@ -76,7 +76,7 @@
       "category": "PTZ Camera",
       "shortDescription": "Enhanced Full HD PTZ camera with advanced features",
       "description": "Enhanced Full HD PTZ camera with advanced features including improved low-light performance, faster response times, and expanded preset storage for versatile applications.",
-      "image": "/products/full-ptz-camera-2.png",
+      "image": "/products/5.png",
       "features": ["Full HD 1080p", "Enhanced Low Light", "Fast Response", "Extended Presets", "Silent Operation"],
       "applications": ["Professional Studios", "Large Venues", "Event Recording"]
     },
@@ -146,7 +146,7 @@
       "category": "Podium",
       "shortDescription": "Interactive digital podium with comprehensive smart features",
       "description": "All-in-one smart digital podium featuring interactive display, integrated computer, and advanced presentation tools for modern educational and corporate environments.",
-      "image": "/products/all-in-one-smart-digital-podium.png",
+      "image": "/products/6.png",
       "features": ["Interactive Display", "Integrated Computer", "Touch Control", "Document Camera", "Multiple Connectivity"],
       "applications": ["Smart Classrooms", "Lecture Halls", "Conference Centers"]
     },
@@ -176,7 +176,7 @@
       "category": "Automation",
       "shortDescription": "Biometric time attendance system for organizations",
       "description": "Advanced biometric time attendance system using fingerprint and facial recognition technology for accurate and secure employee time tracking in organizations.",
-      "image": "/products/biometric-time-attendance.png",
+      "image": "/products/7.png",
       "features": ["Fingerprint Recognition", "Facial Recognition", "Cloud Integration", "Real-time Reporting", "Multi-location Support"],
       "applications": ["Offices", "Schools", "Factories", "Healthcare"]
     },
@@ -206,7 +206,7 @@
       "category": "Mounting",
       "shortDescription": "Floor stand mount for displays",
       "description": "Floor stand mount for displays and interactive panels requiring freestanding installation, offering adjustable height and stable base for versatile positioning.",
-      "image": "/products/floor-mount.png",
+      "image": "/products/8.png",
       "features": ["Freestanding", "Adjustable Height", "Stable Base", "Mobile Option", "Cable Management"],
       "applications": ["Displays", "Interactive Panels", "Trade Shows"]
     },
@@ -236,7 +236,7 @@
       "category": "Mounting",
       "shortDescription": "Professional boom stand for microphones",
       "description": "Professional boom stand for microphones in recording and presentation setups, providing adjustable arm positioning and stable base for optimal microphone placement.",
-      "image": "/products/boomer-stand.png",
+      "image": "/products/9.png",
       "features": ["Adjustable Arm", "Stable Base", "Professional Grade", "Smooth Movement", "Compact Storage"],
       "applications": ["Recording Studios", "Conference Rooms", "Podcast Studios"]
     },
@@ -246,7 +246,7 @@
       "category": "Lighting",
       "shortDescription": "Energy-efficient LED panel lights for illumination",
       "description": "Energy-efficient LED panel lights providing bright and uniform illumination for classrooms, offices, and commercial spaces with long-lasting performance.",
-      "image": "/products/led-panel-lights.png",
+      "image": "/products/10.png",
       "features": ["Energy Efficient", "Bright Output", "Long Lasting", "Flicker Free", "Easy Installation"],
       "applications": ["Classrooms", "Offices", "Commercial Spaces"]
     },
@@ -276,7 +276,7 @@
       "category": "Display",
       "shortDescription": "Freestanding digital display for various applications",
       "description": "Floor standing digital display for advertising, information display, and wayfinding in high-traffic areas including retail stores, malls, and public spaces.",
-      "image": "/products/floor-standing-display.png",
+      "image": "/products/11.png",
       "features": ["Freestanding", "High Brightness", "Touch Optional", "Easy Content Management", "Durable Design"],
       "applications": ["Retail", "Malls", "Public Spaces", "Corporate Lobbies"]
     }

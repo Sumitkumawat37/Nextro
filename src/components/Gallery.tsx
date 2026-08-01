@@ -15,18 +15,18 @@ const Gallery = () => {
   ];
 
   const galleryItems = [
-    { id: 1, type: 'photos', image: '📸', title: 'Interactive Flat Panel Installation', description: 'Smart classroom setup with 75" IFP', color: 'from-blue-500 to-cyan-500' },
-    { id: 2, type: 'videos', image: '🎥', title: 'Video Conference Demo', description: 'PTZ camera and video bar setup', color: 'from-purple-500 to-pink-500' },
-    { id: 3, type: 'installations', image: '🔧', title: 'Digital Podium Installation', description: 'Corporate board room setup', color: 'from-green-500 to-emerald-500' },
-    { id: 4, type: 'photos', image: '🖼️', title: 'Active LED Display', description: 'Large format LED wall installation', color: 'from-orange-500 to-red-500' },
-    { id: 5, type: 'videos', image: '📹', title: 'Recording Studio Setup', description: 'Professional audio-video recording', color: 'from-indigo-500 to-purple-500' },
-    { id: 6, type: 'installations', image: '⚙️', title: 'Smart Classroom', description: 'Complete classroom AV solution', color: 'from-amber-500 to-yellow-500' },
-    { id: 7, type: 'photos', image: '📷', title: 'Conference Room Setup', description: 'Video conferencing system', color: 'from-rose-500 to-pink-500' },
-    { id: 8, type: 'videos', image: '🎬', title: 'Auditorium Installation', description: 'Large venue audio system', color: 'from-teal-500 to-cyan-500' },
-    { id: 9, type: 'photos', image: '🎨', title: 'PTZ Camera Array', description: 'Multi-camera recording setup', color: 'from-violet-500 to-purple-500' },
-    { id: 10, type: 'installations', image: '🏢', title: 'University Lecture Hall', description: 'Interactive learning space', color: 'from-fuchsia-500 to-pink-500' },
-    { id: 11, type: 'photos', image: '🎓', title: 'Training Institute Setup', description: 'Modern training room AV', color: 'from-lime-500 to-green-500' },
-    { id: 12, type: 'videos', image: '💼', title: 'Corporate Meeting Room', description: 'Presentation and collaboration', color: 'from-sky-500 to-blue-500' },
+    { id: 1, type: 'photos', image: '/products/1.png', title: 'Interactive Flat Panel Installation', description: 'Smart classroom setup with 75" IFP', color: 'from-blue-500 to-cyan-500' },
+    { id: 2, type: 'videos', image: '/products/4k-bar-camera.png', title: 'Video Conference Demo', description: 'PTZ camera and video bar setup', color: 'from-purple-500 to-pink-500' },
+    { id: 3, type: 'installations', image: '/products/smart-podium.png', title: 'Digital Podium Installation', description: 'Corporate board room setup', color: 'from-green-500 to-emerald-500' },
+    { id: 4, type: 'photos', image: '/products/2.png', title: 'Active LED Display', description: 'Large format LED wall installation', color: 'from-orange-500 to-red-500' },
+    { id: 5, type: 'videos', image: '/products/4k-ptz-camera.png', title: 'Recording Studio Setup', description: 'Professional audio-video recording', color: 'from-indigo-500 to-purple-500' },
+    { id: 6, type: 'installations', image: '/products/3.png', title: 'Smart Classroom', description: 'Complete classroom AV solution', color: 'from-amber-500 to-yellow-500' },
+    { id: 7, type: 'photos', image: '/products/4.png', title: 'Conference Room Setup', description: 'Video conferencing system', color: 'from-rose-500 to-pink-500' },
+    { id: 8, type: 'videos', image: '/products/speakerphone.png', title: 'Auditorium Installation', description: 'Large venue audio system', color: 'from-teal-500 to-cyan-500' },
+    { id: 9, type: 'photos', image: '/products/5.png', title: 'PTZ Camera Array', description: 'Multi-camera recording setup', color: 'from-violet-500 to-purple-500' },
+    { id: 10, type: 'installations', image: '/products/6.png', title: 'University Lecture Hall', description: 'Interactive learning space', color: 'from-fuchsia-500 to-pink-500' },
+    { id: 11, type: 'photos', image: '/products/webcam.png', title: 'Training Institute Setup', description: 'Modern training room AV', color: 'from-lime-500 to-green-500' },
+    { id: 12, type: 'videos', image: '/products/active-speaker-with-microphone.png', title: 'Corporate Meeting Room', description: 'Presentation and collaboration', color: 'from-sky-500 to-blue-500' },
   ];
 
   const filteredItems = activeTab === 'all' ? galleryItems : galleryItems.filter(item => item.type === activeTab);
@@ -97,9 +97,13 @@ const Gallery = () => {
                          item.color === 'from-fuchsia-500 to-pink-500' ? 'linear-gradient(135deg, #D946EF 0%, #EC4899 100%)' : 
                          item.color === 'from-lime-500 to-green-500' ? 'linear-gradient(135deg, #84CC16 0%, #22C55E 100%)' : 
                          'linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '64px', color: 'white' 
+                display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative'
               }}>
-                {item.image}
+                <img 
+                  src={item.image} 
+                  alt={item.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', padding: '16px' }}
+                />
               </div>
               <div style={{ padding: 'clamp(12px, 3vw, 16px)' }}>
                 <h4 style={{ fontSize: 'clamp(14px, 2vw, 16px)', fontWeight: 700, color: '#10172B', marginBottom: '8px', overflowWrap: 'break-word' }}>{item.title}</h4>
