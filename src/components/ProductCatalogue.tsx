@@ -121,6 +121,7 @@ const ProductCatalogue = () => {
                       src={product.image} 
                       alt={product.name}
                       style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '24px' }}
+                      loading="lazy"
                     />
                   ) : (
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
