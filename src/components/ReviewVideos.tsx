@@ -11,7 +11,7 @@ const ReviewVideos = () => {
   };
 
   const getYouTubeEmbedUrl = (youtubeId: string) => {
-    return `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1&disablekb=1&fs=0&playsinline=1`;
+    return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1&disablekb=1&fs=0&playsinline=1&cc_load_policy=0&hl=en`;
   };
 
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
@@ -127,7 +127,7 @@ const ReviewVideos = () => {
                   position: 'absolute',
                   top: '16px',
                   right: '16px',
-                  zIndex: 10,
+                  zIndex: 20,
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
@@ -144,15 +144,15 @@ const ReviewVideos = () => {
               >
                 <X size={20} style={{ color: '#10172B' }} />
               </button>
-              <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
                 <iframe
                   src={getYouTubeEmbedUrl(activeVideo)}
                   style={{
                     position: 'absolute',
-                    top: '-5%',
-                    left: '-5%',
-                    width: '110%',
-                    height: '110%',
+                    top: '-20%',
+                    left: '-20%',
+                    width: '140%',
+                    height: '140%',
                     border: 'none',
                   }}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
