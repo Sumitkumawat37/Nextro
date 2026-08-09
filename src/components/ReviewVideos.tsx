@@ -7,11 +7,11 @@ import reviewVideos from '@/data/reviewVideos.json';
 
 const ReviewVideos = () => {
   const getYouTubeThumbnail = (youtubeId: string) => {
-    return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+    return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
   };
 
   const getYouTubeEmbedUrl = (youtubeId: string) => {
-    return `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1`;
+    return `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1&disablekb=1&fs=0&playsinline=1`;
   };
 
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
@@ -118,6 +118,7 @@ const ReviewVideos = () => {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                backgroundColor: '#000',
               }}
             >
               <button
@@ -143,16 +144,21 @@ const ReviewVideos = () => {
               >
                 <X size={20} style={{ color: '#10172B' }} />
               </button>
-              <iframe
-                src={getYouTubeEmbedUrl(activeVideo)}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  border: 'none',
-                }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                <iframe
+                  src={getYouTubeEmbedUrl(activeVideo)}
+                  style={{
+                    position: 'absolute',
+                    top: '-5%',
+                    left: '-5%',
+                    width: '110%',
+                    height: '110%',
+                    border: 'none',
+                  }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             </motion.div>
           </>
         )}
