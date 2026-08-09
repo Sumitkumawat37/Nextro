@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play, X } from 'lucide-react';
 import reviewVideos from '@/data/reviewVideos.json';
 
 const ReviewVideos = () => {
@@ -9,13 +10,11 @@ const ReviewVideos = () => {
     return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
   };
 
-  const getYouTubeUrl = (youtubeId: string) => {
-    return `https://www.youtube.com/watch?v=${youtubeId}`;
+  const getYouTubeEmbedUrl = (youtubeId: string) => {
+    return `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1`;
   };
 
-  const handleVideoClick = (youtubeId: string) => {
-    window.open(getYouTubeUrl(youtubeId), '_blank');
-  };
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   return (
     <section id="reviews" style={{ padding: 'clamp(48px, 8vw, 96px) 0', backgroundColor: '#F9FAFB' }}>
@@ -50,7 +49,7 @@ const ReviewVideos = () => {
             >
               {/* Video Thumbnail */}
               <div 
-                onClick={() => handleVideoClick(video.youtubeId)}
+                onClick={() => setActiveVideo(video.youtubeId)}
                 style={{ position: 'relative', paddingTop: '56.25%', backgroundColor: '#000', overflow: 'hidden', cursor: 'pointer' }}
               >
                 <img
@@ -82,6 +81,82 @@ const ReviewVideos = () => {
           ))}
         </div>
       </div>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeVideo && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveVideo(null)}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                zIndex: 1000,
+              }}
+            />
+
+            {/* Video Player */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              style={{
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '90%',
+                maxWidth: '1000px',
+                aspectRatio: '16/9',
+                zIndex: 1001,
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              <button
+                onClick={() => setActiveVideo(null)}
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  zIndex: 10,
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'}
+              >
+                <X size={20} style={{ color: '#10172B' }} />
+              </button>
+              <iframe
+                src={getYouTubeEmbedUrl(activeVideo)}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
+                }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
