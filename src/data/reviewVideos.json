@@ -3,20 +3,38 @@
     {
       "id": "1",
       "title": "Interactive Flat Panel Review",
-      "youtubeId": "dQw4w9WgXcQ",
+      "youtubeId": "mcD9fr-UtCw",
       "description": "Complete review of our interactive flat panel displays"
     },
     {
       "id": "2", 
       "title": "PTZ Camera Demo",
-      "youtubeId": "dQw4w9WgXcQ",
+      "youtubeId": "2yUI8I0jSC0",
       "description": "Demonstration of PTZ camera features"
     },
     {
       "id": "3",
       "title": "Smart Classroom Setup",
-      "youtubeId": "dQw4w9WgXcQ",
+      "youtubeId": "BjRlHBQFF7Y",
       "description": "Complete smart classroom installation walkthrough"
+    },
+    {
+      "id": "4",
+      "title": "Digital Podium Features",
+      "youtubeId": "pjsU4Zq4mEA",
+      "description": "Overview of smart digital podium capabilities"
+    },
+    {
+      "id": "5",
+      "title": "Video Conferencing Setup",
+      "youtubeId": "Hi44IFjo85A",
+      "description": "Professional video conferencing installation guide"
+    },
+    {
+      "id": "6",
+      "title": "Audio System Review",
+      "youtubeId": "HD9SxR2Vk3U",
+      "description": "Complete audio system demonstration and review"
     }
   ]
 }

@@ -9,8 +9,12 @@ const ReviewVideos = () => {
     return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
   };
 
-  const getYouTubeEmbedUrl = (youtubeId: string) => {
-    return `https://www.youtube.com/embed/${youtubeId}`;
+  const getYouTubeUrl = (youtubeId: string) => {
+    return `https://www.youtube.com/watch?v=${youtubeId}`;
+  };
+
+  const handleVideoClick = (youtubeId: string) => {
+    window.open(getYouTubeUrl(youtubeId), '_blank');
   };
 
   return (
@@ -45,7 +49,10 @@ const ReviewVideos = () => {
               style={{ backgroundColor: 'white', borderRadius: '20px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', border: '1px solid #F3F4F6', transition: 'all 0.3s', overflow: 'hidden' }}
             >
               {/* Video Thumbnail */}
-              <div style={{ position: 'relative', paddingTop: '56.25%', backgroundColor: '#000', overflow: 'hidden' }}>
+              <div 
+                onClick={() => handleVideoClick(video.youtubeId)}
+                style={{ position: 'relative', paddingTop: '56.25%', backgroundColor: '#000', overflow: 'hidden', cursor: 'pointer' }}
+              >
                 <img
                   src={getYouTubeThumbnail(video.youtubeId)}
                   alt={video.title}
@@ -59,9 +66,6 @@ const ReviewVideos = () => {
                   >
                     <Play size={28} style={{ color: '#2448D8', marginLeft: '4px' }} />
                   </motion.div>
-                </div>
-                <div style={{ position: 'absolute', bottom: '12px', right: '12px', backgroundColor: 'rgba(255, 0, 0, 0.9)', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '12px', fontWeight: 600 }}>
-                  YouTube
                 </div>
               </div>
 
