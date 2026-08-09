@@ -69,13 +69,17 @@ const Navigation = () => {
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 16px', width: '100%', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 'clamp(60px, 8vw, 80px)' }}>
           {/* Logo */}
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-            <motion.div
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+            <motion.img
               whileHover={{ scale: 1.05 }}
-              style={{ fontSize: 'clamp(20px, 4vw, 28px)', fontWeight: 700, background: 'linear-gradient(135deg, #2448D8 0%, #3D5FE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', overflowWrap: 'break-word' }}
-            >
-              NEXTRO
-            </motion.div>
+              src="/nextro-logo.png"
+              alt="NEXTRO"
+              style={{
+                height: 'clamp(40px, 6vw, 60px)',
+                width: 'auto',
+                objectFit: 'contain'
+              }}
+            />
             <span style={{ fontSize: 'clamp(12px, 2vw, 14px)', color: '#4B5563', display: !isMobile ? 'block' : 'none', overflowWrap: 'break-word' }}>Smart AV Solutions</span>
           </Link>
 

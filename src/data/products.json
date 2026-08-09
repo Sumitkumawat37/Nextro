@@ -6,7 +6,7 @@
       "category": "Interactive Display",
       "shortDescription": "Zero Bonding Technology with Ultra HD 4K display for modern classrooms",
       "description": "Interactive Flat Panel featuring Zero Bonding Technology, Low Parallax Writing, Wider Viewing Angle, Eye Protection, Dual Pen Support, Ultra HD 4K, and AI Panel capabilities for enhanced collaborative learning.",
-      "image": "/products/1.png",
+      "image": "/products/interactive-flat-panel.png",
       "features": ["Zero Bonding Technology", "Low Parallax Writing", "Wider Viewing Angle", "Eye Protection", "Dual Pen Support", "Ultra HD 4K", "AI Panel"],
       "applications": ["Classrooms", "Conference Rooms", "Training Centers"]
     },
@@ -16,7 +16,7 @@
       "category": "Interactive Display",
       "shortDescription": "65-inch Interactive Flat Panel with advanced touch technology",
       "description": "65-inch Interactive Flat Panel with advanced touch technology, perfect for medium-sized classrooms and meeting rooms with crystal clear display and responsive touch interface.",
-      "image": "/products/2.png",
+      "image": "/products/interactive-flat-panel-2.png",
       "features": ["65-inch Display", "Advanced Touch", "4K Resolution", "Multi-touch Support", "Anti-glare Screen"],
       "applications": ["Classrooms", "Meeting Rooms", "Training Centers"]
     },
@@ -26,7 +26,7 @@
       "category": "Interactive Display",
       "shortDescription": "75-inch Interactive Flat Panel for large venues and auditoriums",
       "description": "75-inch Interactive Flat Panel designed for large venues and auditoriums, providing exceptional visibility and interactive capabilities for presentations and collaborative sessions.",
-      "image": "/products/3.png",
+      "image": "/products/interactive-flat-panel-3.png",
       "features": ["75-inch Display", "Large Venue Optimized", "4K Resolution", "Wide Viewing Angle", "High Brightness"],
       "applications": ["Auditoriums", "Large Classrooms", "Conference Halls"]
     },

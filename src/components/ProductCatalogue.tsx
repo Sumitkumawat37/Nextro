@@ -115,12 +115,12 @@ const ProductCatalogue = () => {
             >
               {/* Product Image */}
               <Link href={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
-                <div style={{ position: 'relative', height: '200px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden', cursor: 'pointer' }}>
+                <div style={{ position: 'relative', height: '240px', background: 'linear-gradient(135deg, #F0F4FF 0%, #E0E9FF 100%)', overflow: 'hidden', cursor: 'pointer' }}>
                   {product.image ? (
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '24px' }}
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '32px' }}
                     />
                   ) : (
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

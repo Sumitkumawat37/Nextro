@@ -5,6 +5,7 @@ import Industries from '@/components/Industries';
 import WhyNextro from '@/components/WhyNextro';
 import Branches from '@/components/Branches';
 import Gallery from '@/components/Gallery';
+import ReviewVideos from '@/components/ReviewVideos';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Industries />
       <WhyNextro />
       <Gallery />
+      <ReviewVideos />
       <Branches />
       <Footer />
     </div>

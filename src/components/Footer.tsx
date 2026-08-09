@@ -11,7 +11,18 @@ const Footer = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'clamp(24px, 5vw, 48px)' }}>
           {/* Company Info */}
           <div>
-            <h3 style={{ fontSize: 'clamp(20px, 4vw, 28px)', fontWeight: 700, marginBottom: '16px', background: 'linear-gradient(135deg, #2448D8 0%, #3D5FE8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', overflowWrap: 'break-word' }}>NEXTRO</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                src="/nextro-logo.png"
+                alt="NEXTRO"
+                style={{
+                  height: 'clamp(32px, 4vw, 48px)',
+                  width: 'auto',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
             <p style={{ color: '#9CA3AF', marginBottom: '24px', lineHeight: 1.6, overflowWrap: 'break-word' }}>
               A Perfect Classroom Setup Provider in India. Next-Level Learning & Connectivity.
             </p>
