@@ -1,9 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import reviewVideos from '@/data/reviewVideos.json';
+
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
 
 const ReviewVideos = () => {
   const getYouTubeThumbnail = (youtubeId: string) => {
@@ -15,6 +22,42 @@ const ReviewVideos = () => {
   };
 
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const playerRefs = useRef<{ [key: string]: any }>({});
+  const iframeRefs = useRef<{ [key: string]: HTMLIFrameElement | null }>({});
+
+  useEffect(() => {
+    // Load YouTube IFrame API
+    if (!window.YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        // API loaded
+      };
+    }
+  }, []);
+
+  const handleVideoClick = (youtubeId: string) => {
+    setActiveVideo(youtubeId);
+    
+    // Try to trigger fullscreen after a short delay
+    setTimeout(() => {
+      const iframe = iframeRefs.current[youtubeId];
+      if (iframe) {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if ((iframe as any).webkitRequestFullscreen) {
+          (iframe as any).webkitRequestFullscreen();
+        } else if ((iframe as any).mozRequestFullScreen) {
+          (iframe as any).mozRequestFullScreen();
+        } else if ((iframe as any).msRequestFullscreen) {
+          (iframe as any).msRequestFullscreen();
+        }
+      }
+    }, 500);
+  };
 
   return (
     <section id="reviews" style={{ padding: 'clamp(48px, 8vw, 96px) 0', backgroundColor: '#F9FAFB' }}>
@@ -52,6 +95,7 @@ const ReviewVideos = () => {
                 {activeVideo === video.youtubeId ? (
                   <>
                     <iframe
+                      ref={(el) => { iframeRefs.current[video.youtubeId] = el; }}
                       src={getYouTubeEmbedUrl(video.youtubeId)}
                       style={{
                         position: 'absolute',
@@ -66,7 +110,27 @@ const ReviewVideos = () => {
                       title="YouTube video player"
                       className="youtube-iframe"
                     />
-                    {/* Overlay to hide YouTube logo watermark */}
+                    {/* Overlays to hide all YouTube UI elements */}
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '60px',
+                      backgroundColor: '#000',
+                      zIndex: 10,
+                      pointerEvents: 'none'
+                    }} />
+                    <div style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: '50px',
+                      backgroundColor: '#000',
+                      zIndex: 10,
+                      pointerEvents: 'none'
+                    }} />
                     <div style={{
                       position: 'absolute',
                       bottom: '8px',
@@ -87,7 +151,7 @@ const ReviewVideos = () => {
                       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                     <div 
-                      onClick={() => setActiveVideo(video.youtubeId)}
+                      onClick={() => handleVideoClick(video.youtubeId)}
                       style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.3)', cursor: 'pointer' }}
                     >
                       <motion.div
