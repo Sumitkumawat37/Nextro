@@ -116,7 +116,7 @@ const ReviewVideos = () => {
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      height: '60px',
+                      height: '80px',
                       backgroundColor: '#000',
                       zIndex: 10,
                       pointerEvents: 'none'
@@ -126,7 +126,7 @@ const ReviewVideos = () => {
                       top: 0,
                       left: 0,
                       right: 0,
-                      height: '50px',
+                      height: '70px',
                       backgroundColor: '#000',
                       zIndex: 10,
                       pointerEvents: 'none'
