@@ -11,7 +11,7 @@ const ReviewVideos = () => {
   };
 
   const getYouTubeEmbedUrl = (youtubeId: string) => {
-    return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1&disablekb=1&fs=0&playsinline=1&cc_load_policy=0&hl=en&widget_referrer=${encodeURIComponent(window.location.href)}`;
+    return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=0&disablekb=1&fs=0&playsinline=1&cc_load_policy=0&hl=en&widget_referrer=${encodeURIComponent(window.location.href)}&playlist=${youtubeId}`;
   };
 
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
@@ -50,19 +50,44 @@ const ReviewVideos = () => {
               {/* Video Player/Thumbnail */}
               <div style={{ position: 'relative', paddingTop: '56.25%', backgroundColor: '#000', overflow: 'hidden' }}>
                 {activeVideo === video.youtubeId ? (
-                  <iframe
-                    src={getYouTubeEmbedUrl(video.youtubeId)}
-                    style={{
+                  <>
+                    <iframe
+                      src={getYouTubeEmbedUrl(video.youtubeId)}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                      }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="YouTube video player"
+                      className="youtube-iframe"
+                    />
+                    {/* Overlay to hide YouTube logo and branding */}
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                      width: '80px',
+                      height: '30px',
+                      backgroundColor: '#000',
+                      zIndex: 10,
+                      pointerEvents: 'none'
+                    }} />
+                    <div style={{
                       position: 'absolute',
                       top: 0,
                       left: 0,
-                      width: '100%',
-                      height: '100%',
-                      border: 'none',
-                    }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                      width: '60px',
+                      height: '25px',
+                      backgroundColor: '#000',
+                      zIndex: 10,
+                      pointerEvents: 'none'
+                    }} />
+                  </>
                 ) : (
                   <>
                     <img
