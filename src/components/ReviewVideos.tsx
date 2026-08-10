@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, X } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Play } from 'lucide-react';
 import reviewVideos from '@/data/reviewVideos.json';
 
 const ReviewVideos = () => {
@@ -11,7 +11,7 @@ const ReviewVideos = () => {
   };
 
   const getYouTubeEmbedUrl = (youtubeId: string) => {
-    return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1&disablekb=1&fs=0&playsinline=1&cc_load_policy=0&hl=en`;
+    return `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&controls=1&disablekb=1&fs=0&playsinline=1&cc_load_policy=0&hl=en&widget_referrer=${encodeURIComponent(window.location.href)}`;
   };
 
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
@@ -47,25 +47,43 @@ const ReviewVideos = () => {
               whileHover={{ y: -8 }}
               style={{ backgroundColor: 'white', borderRadius: '20px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', border: '1px solid #F3F4F6', transition: 'all 0.3s', overflow: 'hidden' }}
             >
-              {/* Video Thumbnail */}
-              <div 
-                onClick={() => setActiveVideo(video.youtubeId)}
-                style={{ position: 'relative', paddingTop: '56.25%', backgroundColor: '#000', overflow: 'hidden', cursor: 'pointer' }}
-              >
-                <img
-                  src={getYouTubeThumbnail(video.youtubeId)}
-                  alt={video.title}
-                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-                <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.3)' }}>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 10px 40px rgba(0,0,0,0.3)' }}
-                  >
-                    <Play size={28} style={{ color: '#2448D8', marginLeft: '4px' }} />
-                  </motion.div>
-                </div>
+              {/* Video Player/Thumbnail */}
+              <div style={{ position: 'relative', paddingTop: '56.25%', backgroundColor: '#000', overflow: 'hidden' }}>
+                {activeVideo === video.youtubeId ? (
+                  <iframe
+                    src={getYouTubeEmbedUrl(video.youtubeId)}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 'none',
+                    }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <>
+                    <img
+                      src={getYouTubeThumbnail(video.youtubeId)}
+                      alt={video.title}
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                    <div 
+                      onClick={() => setActiveVideo(video.youtubeId)}
+                      style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.3)', cursor: 'pointer' }}
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 10px 40px rgba(0,0,0,0.3)' }}
+                      >
+                        <Play size={28} style={{ color: '#2448D8', marginLeft: '4px' }} />
+                      </motion.div>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Video Info */}
@@ -81,88 +99,6 @@ const ReviewVideos = () => {
           ))}
         </div>
       </div>
-
-      {/* Video Modal */}
-      <AnimatePresence>
-        {activeVideo && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveVideo(null)}
-              style={{
-                position: 'fixed',
-                inset: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                zIndex: 1000,
-              }}
-            />
-
-            {/* Video Player */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              style={{
-                position: 'fixed',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '90%',
-                maxWidth: '1000px',
-                aspectRatio: '16/9',
-                zIndex: 1001,
-                borderRadius: '16px',
-                overflow: 'hidden',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-                backgroundColor: '#000',
-              }}
-            >
-              <button
-                onClick={() => setActiveVideo(null)}
-                style={{
-                  position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  zIndex: 20,
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'background-color 0.2s',
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'}
-              >
-                <X size={20} style={{ color: '#10172B' }} />
-              </button>
-              <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
-                <iframe
-                  src={getYouTubeEmbedUrl(activeVideo)}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    border: 'none',
-                  }}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
