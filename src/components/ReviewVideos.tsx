@@ -37,6 +37,28 @@ const ReviewVideos = () => {
         // API loaded
       };
     }
+
+    // Handle fullscreen exit
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement && 
+          !(document as any).webkitFullscreenElement && 
+          !(document as any).mozFullScreenElement && 
+          !(document as any).msFullscreenElement) {
+        setActiveVideo(null);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+    };
   }, []);
 
   const handleVideoClick = (youtubeId: string) => {
@@ -110,13 +132,13 @@ const ReviewVideos = () => {
                       title="YouTube video player"
                       className="youtube-iframe"
                     />
-                    {/* Overlays to hide all YouTube UI elements */}
+                    {/* Overlays to hide all YouTube UI elements - positioned over the iframe */}
                     <div style={{
                       position: 'absolute',
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      height: '80px',
+                      height: '15%',
                       backgroundColor: '#000',
                       zIndex: 10,
                       pointerEvents: 'none'
@@ -126,17 +148,17 @@ const ReviewVideos = () => {
                       top: 0,
                       left: 0,
                       right: 0,
-                      height: '70px',
+                      height: '12%',
                       backgroundColor: '#000',
                       zIndex: 10,
                       pointerEvents: 'none'
                     }} />
                     <div style={{
                       position: 'absolute',
-                      bottom: '8px',
-                      right: '8px',
-                      width: '32px',
-                      height: '18px',
+                      bottom: '2%',
+                      right: '2%',
+                      width: '8%',
+                      height: '5%',
                       backgroundColor: '#000',
                       zIndex: 10,
                       pointerEvents: 'none',
