@@ -132,37 +132,65 @@ const ReviewVideos = () => {
                       title="YouTube video player"
                       className="youtube-iframe"
                     />
-                    {/* Overlays to hide all YouTube UI elements - positioned over the iframe */}
-                    <div style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: '15%',
-                      backgroundColor: '#000',
-                      zIndex: 10,
-                      pointerEvents: 'none'
-                    }} />
+                    {/* Redirect lock overlays */}
+                    {/* Top overlay - covers title bar and channel avatar */}
                     <div style={{
                       position: 'absolute',
                       top: 0,
                       left: 0,
                       right: 0,
-                      height: '12%',
+                      height: '64px',
                       backgroundColor: '#000',
-                      zIndex: 10,
-                      pointerEvents: 'none'
+                      pointerEvents: 'none',
+                      zIndex: 50
                     }} />
+
+                    {/* Top-left overlay - blocks channel avatar */}
                     <div style={{
                       position: 'absolute',
-                      bottom: '2%',
-                      right: '2%',
-                      width: '8%',
-                      height: '5%',
+                      top: 0,
+                      left: 0,
+                      width: '80px',
+                      height: '64px',
                       backgroundColor: '#000',
-                      zIndex: 10,
+                      zIndex: 60,
+                      pointerEvents: 'auto'
+                    }} />
+
+                    {/* Top-right overlay - blocks "..." menu */}
+                    <div style={{
+                      position: 'absolute',
+                      top: 0,
+                      right: 0,
+                      width: '96px',
+                      height: '64px',
+                      backgroundColor: '#000',
+                      zIndex: 60,
+                      pointerEvents: 'auto'
+                    }} />
+
+                    {/* Bottom-right overlay - blocks share/watch later buttons */}
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                      width: '192px',
+                      height: '80px',
+                      backgroundColor: '#000',
+                      zIndex: 60,
+                      pointerEvents: 'auto'
+                    }} />
+
+                    {/* Bottom gradient - allows controls to work through */}
+                    <div style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '96px',
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.95), transparent)',
                       pointerEvents: 'none',
-                      borderRadius: '2px'
+                      zIndex: 50
                     }} />
                   </>
                 ) : (
