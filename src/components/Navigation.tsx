@@ -2,16 +2,19 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail, ShoppingCart } from 'lucide-react';
+import { Menu, X, Phone, Mail, ShoppingCart, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import Cart from '@/components/Cart';
+import products from '@/data/products.json';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const { getTotalItems } = useCart();
 
   const handleScroll = useCallback(() => {
@@ -21,6 +24,37 @@ const Navigation = () => {
   const handleResize = useCallback(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
+
+  const toggleProduct = (productId: string) => {
+    setSelectedProducts((prev: string[]) => 
+      prev.includes(productId) 
+        ? prev.filter((id: string) => id !== productId)
+        : [...prev, productId]
+    );
+  };
+
+  const handleQuoteSubmit = () => {
+    if (selectedProducts.length === 0) return;
+    
+    const phoneNumber = '917073500169';
+    let message = 'Hello, I would like to request a quote for the following products:\n\n';
+    
+    selectedProducts.forEach((productId, index) => {
+      const product = products.products.find(p => p.id === productId);
+      if (product) {
+        message += `${index + 1}. ${product.name}\n`;
+        message += `   Category: ${product.category}\n`;
+        message += `   Description: ${product.shortDescription}\n\n`;
+      }
+    });
+    
+    message += 'Please provide the quotation and payment details.';
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    setIsQuoteModalOpen(false);
+    setSelectedProducts([]);
+  };
 
   useEffect(() => {
     handleScroll();
@@ -143,30 +177,29 @@ const Navigation = () => {
                 </span>
               )}
             </motion.button>
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ 
-                  backgroundColor: '#2448D8', 
-                  color: 'white', 
-                  padding: 'clamp(8px, 2vw, 10px) clamp(16px, 3vw, 24px)', 
-                  borderRadius: '9999px', 
-                  fontWeight: 500, 
-                  boxShadow: '0 10px 40px rgba(36, 72, 216, 0.3)', 
-                  border: 'none', 
-                  cursor: 'pointer', 
-                  transition: 'background-color 0.2s',
-                  minWidth: '140px',
-                  maxWidth: '200px',
-                  fontSize: 'clamp(13px, 2vw, 14px)'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
-              >
-                Request Quote
-              </motion.button>
-            </Link>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsQuoteModalOpen(true)}
+              style={{ 
+                backgroundColor: '#2448D8', 
+                color: 'white', 
+                padding: 'clamp(8px, 2vw, 10px) clamp(16px, 3vw, 24px)', 
+                borderRadius: '9999px', 
+                fontWeight: 500, 
+                boxShadow: '0 10px 40px rgba(36, 72, 216, 0.3)', 
+                border: 'none', 
+                cursor: 'pointer', 
+                transition: 'background-color 0.2s',
+                minWidth: '140px',
+                maxWidth: '200px',
+                fontSize: 'clamp(13px, 2vw, 14px)'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1A35B0'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2448D8'}
+            >
+              Request Quote
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -249,8 +282,12 @@ const Navigation = () => {
                   {link.name}
                 </Link>
               ))}
-              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                <button style={{ 
+              <button 
+                onClick={() => {
+                  setIsQuoteModalOpen(true);
+                  setIsMobileMenuOpen(false);
+                }}
+                style={{ 
                   width: '100%', 
                   backgroundColor: '#2448D8', 
                   color: 'white', 
@@ -262,10 +299,10 @@ const Navigation = () => {
                   transition: 'background-color 0.2s',
                   fontSize: 'clamp(14px, 3vw, 16px)',
                   minWidth: '200px'
-                }}>
-                  Request Quote
-                </button>
-              </Link>
+                }}
+              >
+                Request Quote
+              </button>
               
               {/* Cart Button */}
               <motion.button
@@ -330,6 +367,198 @@ const Navigation = () => {
 
       {/* Cart Component */}
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+
+      {/* Quote Modal */}
+      <AnimatePresence>
+        {isQuoteModalOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsQuoteModalOpen(false)}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                zIndex: 100,
+              }}
+            />
+
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              style={{
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '90%',
+                maxWidth: '600px',
+                maxHeight: '80vh',
+                backgroundColor: 'white',
+                borderRadius: '20px',
+                zIndex: 101,
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Header */}
+              <div style={{
+                padding: '24px',
+                borderBottom: '1px solid #E5E7EB',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                backgroundColor: '#F9FAFB',
+              }}>
+                <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#10172B', margin: 0 }}>
+                  Request Quote
+                </h2>
+                <button
+                  onClick={() => setIsQuoteModalOpen(false)}
+                  style={{
+                    padding: '8px',
+                    borderRadius: '50%',
+                    backgroundColor: '#F3F4F6',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E5E7EB'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#F3F4F6'}
+                >
+                  <X size={20} style={{ color: '#4B5563' }} />
+                </button>
+              </div>
+
+              {/* Products List */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+                <div style={{ marginBottom: '12px', fontSize: '14px', color: '#6B7280' }}>
+                  {selectedProducts.length > 0 
+                    ? `${selectedProducts.length} product${selectedProducts.length > 1 ? 's' : ''} selected`
+                    : 'Click on products to select them for your quote'}
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {products.products.map((product) => (
+                    <div
+                      key={product.id}
+                      onClick={() => toggleProduct(product.id)}
+                      style={{
+                        padding: '12px',
+                        borderRadius: '8px',
+                        border: '1px solid #E5E7EB',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        transition: 'all 0.2s',
+                        backgroundColor: selectedProducts.includes(product.id) ? '#F0F4FF' : 'white',
+                        borderColor: selectedProducts.includes(product.id) ? '#2448D8' : '#E5E7EB',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!selectedProducts.includes(product.id)) {
+                          e.currentTarget.style.backgroundColor = '#F9FAFB';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!selectedProducts.includes(product.id)) {
+                          e.currentTarget.style.backgroundColor = 'white';
+                        }
+                      }}
+                    >
+                      <div style={{
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '4px',
+                        border: '2px solid #D1D5DB',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: selectedProducts.includes(product.id) ? '#2448D8' : 'white',
+                        borderColor: selectedProducts.includes(product.id) ? '#2448D8' : '#D1D5DB',
+                      }}>
+                        {selectedProducts.includes(product.id) && <CheckCircle size={14} style={{ color: 'white' }} />}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: '14px', fontWeight: 600, color: '#10172B' }}>{product.name}</div>
+                        <div style={{ fontSize: '12px', color: '#6B7280' }}>{product.category}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div style={{
+                padding: '20px',
+                borderTop: '1px solid #E5E7EB',
+                backgroundColor: 'white',
+                display: 'flex',
+                gap: '12px',
+              }}>
+                <button
+                  onClick={() => setIsQuoteModalOpen(false)}
+                  style={{
+                    flex: 1,
+                    backgroundColor: 'transparent',
+                    color: '#6B7280',
+                    padding: '14px',
+                    borderRadius: '12px',
+                    fontWeight: 600,
+                    fontSize: '14px',
+                    border: '1px solid #D1D5DB',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#F3F4F6';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleQuoteSubmit}
+                  disabled={selectedProducts.length === 0}
+                  style={{
+                    flex: 1,
+                    backgroundColor: selectedProducts.length > 0 ? '#25D366' : '#D1D5DB',
+                    color: 'white',
+                    padding: '14px',
+                    borderRadius: '12px',
+                    fontWeight: 600,
+                    fontSize: '14px',
+                    border: 'none',
+                    cursor: selectedProducts.length > 0 ? 'pointer' : 'not-allowed',
+                    transition: 'background-color 0.2s',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (selectedProducts.length > 0) {
+                      e.currentTarget.style.backgroundColor = '#128C7E';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (selectedProducts.length > 0) {
+                      e.currentTarget.style.backgroundColor = '#25D366';
+                    }
+                  }}
+                >
+                  Get Quote via WhatsApp
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };
