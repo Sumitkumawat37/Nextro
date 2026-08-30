@@ -1,10 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Building2, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Building2, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
+import products from '@/data/products.json';
 
 const Contact = () => {
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
+  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+
   const services = [
     'Smart Classroom Setup',
     'Video Conference Solutions',
@@ -15,6 +20,14 @@ const Contact = () => {
     'PTZ Camera Installation',
     'Audio System Integration',
   ];
+
+  const toggleProduct = (productId: string) => {
+    setSelectedProducts((prev: string[]) => 
+      prev.includes(productId) 
+        ? prev.filter((id: string) => id !== productId)
+        : [...prev, productId]
+    );
+  };
 
   return (
     <section id="contact" style={{ padding: 'clamp(48px, 8vw, 96px) 0', backgroundColor: 'white' }}>
@@ -83,6 +96,105 @@ const Contact = () => {
                   <option>Partnership</option>
                   <option>Other</option>
                 </select>
+              </div>
+              
+              {/* Product Selection for Quote */}
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#374151', marginBottom: '8px' }}>
+                  Select Products (for Quote Request)
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setIsProductDropdownOpen(!isProductDropdownOpen)}
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    borderRadius: '12px',
+                    border: '1px solid #D1D5DB',
+                    backgroundColor: 'white',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.borderColor = '#2448D8'}
+                  onMouseLeave={(e) => e.currentTarget.style.borderColor = '#D1D5DB'}
+                >
+                  <span style={{ color: selectedProducts.length > 0 ? '#10172B' : '#9CA3AF' }}>
+                    {selectedProducts.length > 0 
+                      ? `${selectedProducts.length} product${selectedProducts.length > 1 ? 's' : ''} selected`
+                      : 'Choose products...'}
+                  </span>
+                  {isProductDropdownOpen ? <ChevronUp size={20} style={{ color: '#6B7280' }} /> : <ChevronDown size={20} style={{ color: '#6B7280' }} />}
+                </button>
+                
+                {isProductDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    style={{
+                      marginTop: '8px',
+                      maxHeight: '300px',
+                      overflowY: 'auto',
+                      border: '1px solid #D1D5DB',
+                      borderRadius: '12px',
+                      backgroundColor: 'white',
+                      padding: '12px',
+                      boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
+                    }}
+                  >
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      {products.products.map((product) => (
+                        <div
+                          key={product.id}
+                          onClick={() => toggleProduct(product.id)}
+                          style={{
+                            padding: '12px',
+                            borderRadius: '8px',
+                            border: '1px solid #E5E7EB',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            transition: 'all 0.2s',
+                            backgroundColor: selectedProducts.includes(product.id) ? '#F0F4FF' : 'white',
+                            borderColor: selectedProducts.includes(product.id) ? '#2448D8' : '#E5E7EB',
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!selectedProducts.includes(product.id)) {
+                              e.currentTarget.style.backgroundColor = '#F9FAFB';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!selectedProducts.includes(product.id)) {
+                              e.currentTarget.style.backgroundColor = 'white';
+                            }
+                          }}
+                        >
+                          <div style={{
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '4px',
+                            border: '2px solid #D1D5DB',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: selectedProducts.includes(product.id) ? '#2448D8' : 'white',
+                            borderColor: selectedProducts.includes(product.id) ? '#2448D8' : '#D1D5DB',
+                          }}>
+                            {selectedProducts.includes(product.id) && <CheckCircle size={14} style={{ color: 'white' }} />}
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: '14px', fontWeight: 600, color: '#10172B' }}>{product.name}</div>
+                            <div style={{ fontSize: '12px', color: '#6B7280' }}>{product.category}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: 500, color: '#374151', marginBottom: '8px' }}>Message</label>
